@@ -1,0 +1,50 @@
+﻿<ul class="nav nav-sidebar">
+    <li class="@(ViewBag.SelectedCategory == "dashboard" ? "active" : null)">
+        <a href="@Url.RouteUrl(new { controller = "Dashboard", action = "Index", category = "dashboard" })"><i class="glyphicon glyphicon-signal"></i>Dashboard</a>
+    </li>
+
+    <li class="@(ViewBag.SelectedCategory == "users" ? "active" : null)">
+        <a data-toggle="collapse" data-target="#users-nav-options"><i class="glyphicon glyphicon-user"></i>Usuários</a>
+
+        <div id="users-nav-options" class="nav-config-options panel-collapse @(ViewBag.SelectedCategory == "users" ? "collapse in" : "collapse")">
+            <ul class="list-unstyled">
+                <li class="@(ViewBag.SelectedSubcategory == "manage-users" ? "active-option" : null)">
+                    @Html.RouteLink("Gerenciar Usuários", new { controller = "Users", action = "ManageUsers", category = "users", subcategory = "manage-users" })
+                </li>
+                <li class="@(ViewBag.SelectedSubcategory == "users-groups" ? "active-option" : null)">
+                    @Html.RouteLink("Grupos de Usuários", new { controller = "Users", action = "ManageUsers", category = "users", subcategory = "users-groups" })
+                </li>
+                <li class="@(ViewBag.SelectedSubcategory == "online-users" ? "active-option" : null)">
+                    @Html.RouteLink("Usuários Online", new { controller = "Users", action = "ManageUsers", category = "users", subcategory = "online-users" })
+                </li>
+            </ul>
+        </div>
+    </li>
+
+    <li class="@(ViewBag.SelectedCategory == "catalog" ? "active" : null)">
+        <a data-toggle="collapse" data-target="#catalog-nav-options"><i class="glyphicon glyphicon-th-large"></i>Catálogo</a>
+
+        <div id="catalog-nav-options" class="nav-config-options panel-collapse @(ViewBag.SelectedCategory == "catalog" ? "collapse in" : "collapse")">
+            <ul class="list-unstyled">
+                <li class="@(ViewBag.SelectedSubcategory == "manage-products" ? "active-option" : null)">
+                    @Html.RouteLink("Gerenciar Produtos", new { controller = "Users", action = "ManageUsers", category = "catalog", subcategory = "manage-products" })
+                </li>
+                <li class="@(ViewBag.SelectedSubcategory == "manage-categories" ? "active-option" : null)">
+                    @Html.RouteLink("Gerenciar Categorias", new { controller = "Users", action = "ManageUsers", category = "catalog", subcategory = "manage-categories" })
+                </li>
+                <li class="@(ViewBag.SelectedSubcategory == "attributes" ? "active-option" : null)">
+                    @Html.RouteLink("Atributos", new { controller = "Users", action = "ManageUsers", category = "catalog", subcategory = "attributes" })
+                </li>
+                <li class="@(ViewBag.SelectedSubcategory == "search-terms" ? "active-option" : null)">
+                    @Html.RouteLink("Termos de Busca", new { controller = "Users", action = "ManageUsers", category = "catalog", subcategory = "search-terms" })
+                </li>
+                <li class="@(ViewBag.SelectedSubcategory == "tags" ? "active-option" : null)">
+                    @Html.RouteLink("Tags", new { controller = "Users", action = "ManageUsers", category = "catalog", subcategory = "tags" })
+                </li>
+                <li class="@(ViewBag.SelectedSubcategory == "google-sitemap" ? "active-option" : null)">
+                    @Html.RouteLink("Google Sitemap", new { controller = "Users", action = "ManageUsers", category = "catalog", subcategory = "google-sitemap" })
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>

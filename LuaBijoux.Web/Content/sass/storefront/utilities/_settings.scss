@@ -1,0 +1,27 @@
+/* Tipografia */
+$base-font-size: 16px;
+$font-1: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-2: Georgia, serif;
+
+$baseline : $base-font-size * 1.5;
+
+/* Cores */
+$color-link: #4183C4;
+$color-link-hover: #333;
+
+$color-text: #333;
+$color-light-text: #777;
+
+$color-hr: #EEE;
+
+$color-1: #4183C4;
+$color-2: #EFEFEF;
+
+$color-validation-error: red;
+$color-validation-success: green;
+
+/* Posicionamento */
+$margin-multiplier: 2;
+
+$gerenal-margin: $baseline * $margin-multiplier;
+

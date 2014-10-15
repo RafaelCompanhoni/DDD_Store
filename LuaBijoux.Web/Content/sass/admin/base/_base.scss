@@ -1,0 +1,15 @@
+body {
+  padding-top: 50px;
+}
+
+/* Opções de filtragem */
+
+.panel-heading {
+    cursor: pointer;
+
+	&:hover {
+		text-decoration: none;
+		color: $color-link-hover;
+	}
+}
+

@@ -1,0 +1,38 @@
+/* line 1, ../../../sass/admin/pages/dashboard.scss */
+.main {
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  /* line 6, ../../../sass/admin/pages/dashboard.scss */
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+/* line 12, ../../../sass/admin/pages/dashboard.scss */
+.main .page-header {
+  margin-top: 0;
+}
+
+/* line 16, ../../../sass/admin/pages/dashboard.scss */
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* line 21, ../../../sass/admin/pages/dashboard.scss */
+.placeholders h4 {
+  margin-bottom: 0;
+}
+
+/* line 25, ../../../sass/admin/pages/dashboard.scss */
+.placeholder {
+  margin-bottom: 20px;
+}
+
+/* line 29, ../../../sass/admin/pages/dashboard.scss */
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}

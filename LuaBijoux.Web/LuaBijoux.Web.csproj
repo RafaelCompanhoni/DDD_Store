@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FA0C3074-C09D-45F2-A57E-1EDA52E794C8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LuaBijoux.Web</RootNamespace>
+    <AssemblyName>LuaBijoux.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <IsCompassProject>True</IsCompassProject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\admin\pages\dashboard.css" />
+    <Content Include="Content\css\admin\pages\manage-users.css" />
+    <Content Include="Content\css\admin\styles.css" />
+    <Content Include="Content\css\storefront\bootstrap.css" />
+    <Content Include="Content\css\storefront\styles.css" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\js\admin\dashboard\holder.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\affix.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\alert.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\button.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\carousel.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\collapse.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\dropdown.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\ie10-viewport-bug-workaround.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\modal.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\popover.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\scrollspy.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\tab.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\tooltip.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\transition.js" />
+    <Content Include="Content\js\admin\frameworks\ie10-viewport-bug-workaround.js" />
+    <Content Include="Content\js\admin\scripts.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\affix.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\alert.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\bootstrap.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\button.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\carousel.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\collapse.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\dropdown.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\modal.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\popover.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\scrollspy.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\tab.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\tooltip.js" />
+    <Content Include="Content\js\storefront\frameworks\bootstrap\transition.js" />
+    <Content Include="Content\js\storefront\frameworks\ie10-viewport-bug-workaround.js" />
+    <Content Include="Content\js\storefront\frameworks\jquery-1.11.1.min.js" />
+    <Content Include="Content\js\storefront\scripts.js" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <None Include="Content\js\_references.js" />
+    <Content Include="Global.asax" />
+    <None Include="Content\js\admin\frameworks\jquery-1.8.3-vsdoc.js" />
+    <Content Include="Content\js\admin\frameworks\jquery-1.8.3.min.js" />
+    <None Include="Content\js\admin\frameworks\jquery.validate-vsdoc.js" />
+    <Content Include="Content\js\admin\frameworks\jquery.validate.min.js" />
+    <Content Include="Content\js\admin\frameworks\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NavController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
+    <Compile Include="Areas\Storefront\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Storefront\StorefrontAreaRegistration.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Mappers\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Mappers\DomainToModelMappingProfile.cs" />
+    <Compile Include="Infrastructure\Mappers\ModelToDomainMappingProfile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Storefront\Views\web.config" />
+    <Content Include="config.rb" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Nav\Menu.cshtml" />
+    <Content Include="Areas\Admin\Views\Nav\TopMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\ManageUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\CreateUser.cshtml" />
+    <Content Include="Areas\Storefront\Views\Home\Index.cshtml" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\font-awesome\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\sass\admin\base\_base.scss" />
+    <Content Include="Content\sass\admin\base\_normalize.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_alerts.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_center-block.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_forms.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_grid.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_hide-text.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_image.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_labels.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_nav-vertical-align.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_opacity.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_panels.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_progress-bar.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_reset-filter.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_resize.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_responsive-visibility.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_size.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_tab-focus.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_text-overflow.scss" />
+    <Content Include="Content\sass\admin\bootstrap\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_alerts.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_badges.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_bootstrap-compass.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_bootstrap-mincer.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_bootstrap-sprockets.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_bootstrap.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_breadcrumbs.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_button-groups.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_buttons.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_carousel.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_close.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_code.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_component-animations.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_dropdowns.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_forms.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_glyphicons.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_grid.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_input-groups.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_jumbotron.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_labels.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_list-group.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_media.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_mixins.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_modals.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_navbar.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_navs.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_normalize.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_pager.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_pagination.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_panels.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_popovers.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_print.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_progress-bars.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_responsive-embed.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_responsive-utilities.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_scaffolding.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_tables.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_theme.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_thumbnails.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_tooltip.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_type.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_utilities.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_variables.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_wells.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_bordered-pulled.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_core.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_fixed-width.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_font-awesome.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_icons.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_larger.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_list.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_mixins.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_path.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_rotated-flipped.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_spinning.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_stacked.scss" />
+    <Content Include="Content\sass\admin\fonts\font-awesome\_variables.scss" />
+    <Content Include="Content\sass\admin\layout\_footer.scss" />
+    <Content Include="Content\sass\admin\layout\_header.scss" />
+    <Content Include="Content\sass\admin\layout\_main.scss" />
+    <Content Include="Content\sass\admin\layout\_nav.scss" />
+    <Content Include="Content\sass\admin\modules\_btn.scss" />
+    <Content Include="Content\sass\admin\modules\_dividers.scss" />
+    <Content Include="Content\sass\admin\modules\_forms.scss" />
+    <Content Include="Content\sass\admin\modules\_misc.scss" />
+    <Content Include="Content\sass\admin\modules\_tables.scss" />
+    <Content Include="Content\sass\admin\pages\dashboard.scss" />
+    <Content Include="Content\sass\admin\pages\manage-users.scss" />
+    <Content Include="Content\sass\admin\styles.scss" />
+    <Content Include="Content\sass\admin\theme\_theme.scss" />
+    <Content Include="Content\sass\admin\utilities\_settings.scss" />
+    <Content Include="Content\sass\admin\utilities\_utilities.scss" />
+    <Content Include="Content\sass\storefront\base\_base.scss" />
+    <Content Include="Content\sass\storefront\base\_ie8.scss" />
+    <Content Include="Content\sass\storefront\base\_normalize.scss" />
+    <Content Include="Content\sass\storefront\bootstrap.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_alerts.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_center-block.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_forms.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_grid.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_hide-text.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_image.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_labels.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_nav-vertical-align.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_opacity.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_panels.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_progress-bar.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_reset-filter.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_resize.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_responsive-visibility.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_size.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_tab-focus.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_text-overflow.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_alerts.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_badges.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_bootstrap-compass.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_bootstrap-mincer.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_bootstrap-sprockets.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_breadcrumbs.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_button-groups.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_buttons.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_carousel.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_close.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_code.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_component-animations.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_dropdowns.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_forms.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_glyphicons.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_grid.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_input-groups.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_jumbotron.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_labels.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_list-group.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_media.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_mixins.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_modals.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_navbar.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_navs.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_normalize.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_pager.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_pagination.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_panels.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_popovers.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_print.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_progress-bars.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_responsive-embed.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_responsive-utilities.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_scaffolding.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_tables.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_theme.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_thumbnails.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_tooltip.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_type.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_utilities.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_variables.scss" />
+    <Content Include="Content\sass\storefront\bootstrap\_wells.scss" />
+    <Content Include="Content\sass\storefront\layout\_footer.scss" />
+    <Content Include="Content\sass\storefront\layout\_header.scss" />
+    <Content Include="Content\sass\storefront\layout\_main.scss" />
+    <Content Include="Content\sass\storefront\layout\_nav.scss" />
+    <Content Include="Content\sass\storefront\modules\_btn.scss" />
+    <Content Include="Content\sass\storefront\modules\_dividers.scss" />
+    <Content Include="Content\sass\storefront\modules\_forms.scss" />
+    <Content Include="Content\sass\storefront\modules\_misc.scss" />
+    <Content Include="Content\sass\storefront\modules\_tables.scss" />
+    <Content Include="Content\sass\storefront\styles.scss" />
+    <Content Include="Content\sass\storefront\theme\_theme.scss" />
+    <Content Include="Content\sass\storefront\utilities\_settings.scss" />
+    <Content Include="Content\sass\storefront\utilities\_utilities.scss" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Storefront\Models\" />
+    <Folder Include="Areas\Storefront\Views\Shared\" />
+    <Folder Include="Content\img\admin\" />
+    <Folder Include="Content\img\storefront\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LuaBijoux.Core\LuaBijoux.Core.csproj">
+      <Project>{91826647-9da6-4adb-af14-21ad487d91cd}</Project>
+      <Name>LuaBijoux.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3525</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:7983/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

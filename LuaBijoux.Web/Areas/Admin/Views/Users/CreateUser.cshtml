@@ -1,0 +1,26 @@
+﻿@model LuaBijoux.Web.Areas.Admin.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Criar Usuário";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Criar Usuário</h2>
+
+@using (Html.BeginForm())
+{
+    foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        <div class="form-group">
+            <label>@(property.DisplayName ?? property.PropertyName)</label>
+            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+            @Html.ValidationMessage(property.PropertyName)
+        </div> 
+    }
+
+    <button type="submit" class="btn btn-primary" name="save-and-continue"><i class="icon-user icon-white"></i> Criar e Continuar</button>
+    <button type="submit" class="btn btn-primary" name="save-and-back"><i class="icon-user icon-white"></i> Criar e Voltar</button>
+    <a class="btn btn-primary"  href="@Url.RouteUrl(new { controller = "Users", action = "ManageUsers", category = "users", subcategory = "manage-users" })"><i class="glyphicon glyphicon-step-backward"></i> Voltar</a>
+}
+
+

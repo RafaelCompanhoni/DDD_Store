@@ -1,0 +1,53 @@
+﻿@using LuaBijoux.Core.DomainModels.Identity;
+@model IEnumerable<AppUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Usuários</h2>
+
+<div class="panel panel-default filter-options">
+    <div class="panel-heading" data-toggle="collapse" data-target="#collapse-options">
+        <span class="panel-title panel-heading"><i class="glyphicon glyphicon-filter"></i> Filtros</span>
+    </div>
+    <div id="collapse-options" class="panel-collapse collapse">
+        <div class="panel-body">
+            CONFIG
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-bordered table-striped main-table">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+           
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        @using (Html.BeginForm("DeleteUser", "UserAdmin", new { id = user.Id }))
+                        {
+                            @Html.ActionLink("Editar", "EditUser", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
+                            <button class="btn btn-danger btn-xs" type="submit">Deletar</button>
+                        }
+                    </td>
+                </tr>
+            }
+        
+        </table>
+    </div>
+    <div class="panel-footer">
+        <a href="@Url.RouteUrl(new { controller = "Users", action = "CreateUser", category = "users", subcategory = "manage-users" })" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>  Criar Novo Usuário</a>
+    </div>
+</div>

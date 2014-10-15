@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/css/admin/styles.css" rel="stylesheet" />
+
+    <!-- INCLUIR COM RAZOR CSS ESPECIFICO DE CADA PAGINA -->
+    <link href="~/Content/css/admin/pages/dashboard.css" rel="stylesheet" />
+    <link href="~/Content/css/admin/pages/manage-users.css" rel="stylesheet" />
+    
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @Html.Action("TopMenu", "Nav")
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="l-sidebar col-sm-3 col-md-2 sidebar">
+                @Html.Action("Menu", "Nav");
+            </div>
+
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                @if (TempData["message"] != null) 
+                {
+                    <div class="alert alert-success fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+                    </div>
+                }
+
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/js/admin/frameworks/jquery-1.8.3.min.js"></script>
+    <script src="~/Content/js/admin/frameworks/jquery.validate.min.js"></script>
+    <script src="~/Content/js/admin/frameworks/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/js/admin/frameworks/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Content/js/admin/frameworks/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
