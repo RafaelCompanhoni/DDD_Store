@@ -509,7 +509,7 @@ hr {
   }
 
   /* line 43, ../../sass/storefront/styles.scss */
-  .sidebar-nav .navbar ul:not {
+  .sidebar-nav .navbar ul {
     display: block;
   }
 

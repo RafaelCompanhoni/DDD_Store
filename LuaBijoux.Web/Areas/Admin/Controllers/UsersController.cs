@@ -27,14 +27,21 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
 
         public ActionResult CreateUser()
         {
-            return View("CreateUser");
+            return View(new UserViewModel());
         }
 
         [HttpPost]
         public ActionResult CreateUser(UserViewModel userModel)
         {
-            string redirectTo = Request.Form["save-and-back"] != null ? "ManageUsers" : null;
-            return View(redirectTo);
+            if (ModelState.IsValid)
+            {
+                string redirectionTarget = Request.Form["save-and-back"] != "CreateUser" ? "ManageUsers" : null;
+                return RedirectToAction(redirectionTarget);
+            }
+            else
+            {
+                return View(userModel);
+            }
 
             /*
             if (ModelState.IsValid) 

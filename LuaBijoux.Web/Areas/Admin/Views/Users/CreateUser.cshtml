@@ -9,18 +9,50 @@
 
 @using (Html.BeginForm())
 {
-    foreach (var property in ViewData.ModelMetadata.Properties)
-    {
-        <div class="form-group">
-            <label>@(property.DisplayName ?? property.PropertyName)</label>
-            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-            @Html.ValidationMessage(property.PropertyName)
-        </div> 
-    }
-
-    <button type="submit" class="btn btn-primary" name="save-and-continue"><i class="icon-user icon-white"></i> Criar e Continuar</button>
-    <button type="submit" class="btn btn-primary" name="save-and-back"><i class="icon-user icon-white"></i> Criar e Voltar</button>
-    <a class="btn btn-primary"  href="@Url.RouteUrl(new { controller = "Users", action = "ManageUsers", category = "users", subcategory = "manage-users" })"><i class="glyphicon glyphicon-step-backward"></i> Voltar</a>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cpf)
+        @Html.TextBoxFor(m => m.Cpf, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Cpf)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Birthdate)
+        @Html.TextBoxFor(m => m.Birthdate, new { @class = "form-control datepicker"})
+        @Html.ValidationMessageFor(m => m.Birthdate)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    </div>
+    
+    <button type="submit" class="btn btn-primary" name="save-and-back"><i class="glyphicon glyphicon-ok"></i> Criar e Voltar</button>
+    <button type="submit" class="btn btn-primary" name="save-and-continue"><i class="glyphicon glyphicon-repeat"></i> Criar e Continuar</button>
+    <a class="btn btn-primary" href="@Url.RouteUrl(new { controller = "Users", action = "ManageUsers", category = "users", subcategory = "manage-users" })"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
 }
-
 

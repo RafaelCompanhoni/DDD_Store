@@ -104,6 +104,7 @@
     <Content Include="Content\js\admin\dashboard\holder.js" />
     <Content Include="Content\js\admin\frameworks\bootstrap\affix.js" />
     <Content Include="Content\js\admin\frameworks\bootstrap\alert.js" />
+    <Content Include="Content\js\admin\frameworks\bootstrap\bootstrap-sass-datepicker.js" />
     <Content Include="Content\js\admin\frameworks\bootstrap\bootstrap.min.js" />
     <Content Include="Content\js\admin\frameworks\bootstrap\button.js" />
     <Content Include="Content\js\admin\frameworks\bootstrap\carousel.js" />
@@ -117,6 +118,7 @@
     <Content Include="Content\js\admin\frameworks\bootstrap\tooltip.js" />
     <Content Include="Content\js\admin\frameworks\bootstrap\transition.js" />
     <Content Include="Content\js\admin\frameworks\ie10-viewport-bug-workaround.js" />
+    <Content Include="Content\js\admin\frameworks\methods_pt.js" />
     <Content Include="Content\js\admin\scripts.js" />
     <Content Include="Content\js\storefront\frameworks\bootstrap\affix.js" />
     <Content Include="Content\js\storefront\frameworks\bootstrap\alert.js" />
@@ -373,6 +375,7 @@
     <Content Include="Content\sass\storefront\theme\_theme.scss" />
     <Content Include="Content\sass\storefront\utilities\_settings.scss" />
     <Content Include="Content\sass\storefront\utilities\_utilities.scss" />
+    <Content Include="Content\sass\admin\bootstrap\_datepicker.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
