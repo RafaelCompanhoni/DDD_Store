@@ -8,8 +8,8 @@ namespace LuaBijoux.Web.Infrastructure.Mappers
         {
             Mapper.Initialize(x =>
             {
-                x.AddProfile<DomainToModelMappingProfile>();
-                x.AddProfile<ModelToDomainMappingProfile>();
+                x.AddProfile<DomainToViewModelMappingProfile>();
+                x.AddProfile<ViewModelToDomainMappingProfile>();
             });
         }
     }

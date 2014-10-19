@@ -34,10 +34,12 @@ namespace LuaBijoux.Data.Extensions
             {
                 return null;
             }
+
             if (applicationIdentityUser == null)
             {
                 return null;
             }
+
             applicationIdentityUser.UserName = appUser.UserName;
             applicationIdentityUser.Id = appUser.Id;
             applicationIdentityUser.AccessFailedCount = appUser.AccessFailedCount;
@@ -50,6 +52,7 @@ namespace LuaBijoux.Data.Extensions
             applicationIdentityUser.PhoneNumberConfirmed = appUser.PhoneNumberConfirmed;
             applicationIdentityUser.SecurityStamp = appUser.SecurityStamp;
             applicationIdentityUser.TwoFactorEnabled = appUser.TwoFactorEnabled;
+
             foreach (var claim in appUser.Claims)
             {
                 applicationIdentityUser.Claims.Add(new ApplicationIdentityUserClaim
@@ -60,10 +63,12 @@ namespace LuaBijoux.Data.Extensions
                     UserId = claim.UserId
                 });
             }
+
             foreach (var role in appUser.Roles)
             {
                 applicationIdentityUser.Roles.Add(role.ToIdentityUserRole());
             }
+
             foreach (var login in appUser.Logins)
             {
                 applicationIdentityUser.Logins.Add(new ApplicationIdentityUserLogin
@@ -73,6 +78,7 @@ namespace LuaBijoux.Data.Extensions
                     UserId = login.UserId
                 });
             }
+
             return applicationIdentityUser;
         }
 

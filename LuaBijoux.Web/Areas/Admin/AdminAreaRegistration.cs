@@ -17,13 +17,13 @@ namespace LuaBijoux.Web.Areas.Admin
             context.MapRoute(
                 name: "Admin_index",
                 url: "Admin/Index",
-                defaults: new { controller = "Dashboard", action = "Index" }
+                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
 
             context.MapRoute(
-                "Admin_default",
-                "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                name: "Admin_default",
+                url: "Admin/{controller}/{action}/{id}",
+                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

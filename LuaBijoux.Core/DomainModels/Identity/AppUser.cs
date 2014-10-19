@@ -26,5 +26,10 @@ namespace LuaBijoux.Core.DomainModels.Identity
         public virtual string SecurityStamp { get; set; }
         public virtual bool TwoFactorEnabled { get; set; }
         public virtual string UserName { get; set; }
+
+        // Propriedades adicionais
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime? Birthdate { get; set; }
     }
 }

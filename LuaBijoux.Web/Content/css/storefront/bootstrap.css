@@ -3552,7 +3552,7 @@ input[type="time"],
 input[type="datetime-local"],
 input[type="month"] {
   line-height: 34px;
-  line-height: 1.42857 \0;
+  line-height: 1.42857;
 }
 /* line 186, ../../sass/storefront/bootstrap/_forms.scss */
 input[type="date"].input-sm, .form-horizontal .form-group-sm input[type="date"].form-control, .input-group-sm > input[type="date"].form-control,

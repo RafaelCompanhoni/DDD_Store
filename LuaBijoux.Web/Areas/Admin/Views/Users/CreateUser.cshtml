@@ -28,14 +28,22 @@
     </div>
     
     <div class="form-group">
+        @Html.LabelFor(m => m.EmailConfirmation)
+        @Html.TextBoxFor(m => m.EmailConfirmation, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.EmailConfirmation)
+    </div>
+    
+    <div class="form-group">
         @Html.LabelFor(m => m.Cpf)
-        @Html.TextBoxFor(m => m.Cpf, new { @class = "form-control"})
+        @Html.TextBoxFor(m => m.Cpf, new { @class = "form-control cpf"})
         @Html.ValidationMessageFor(m => m.Cpf)
     </div>
     
     <div class="form-group">
         @Html.LabelFor(m => m.Birthdate)
-        @Html.TextBoxFor(m => m.Birthdate, new { @class = "form-control datepicker"})
+        @{ Html.EnableClientValidation(false); }
+            @Html.TextBoxFor(m => m.Birthdate, new { @class = "form-control datepicker birthdate" })
+        @{ Html.EnableClientValidation(true);}
         @Html.ValidationMessageFor(m => m.Birthdate)
     </div>
     

@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LuaBijoux.Data.Identity.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationIdentityUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationIdentityUser : IdentityUser<int, ApplicationIdentityUserLogin, ApplicationIdentityUserRole, ApplicationIdentityUserClaim>
     {
+        
     }
-
 
     public class ApplicationIdentityRole : IdentityRole<int, ApplicationIdentityUserRole>
     {
