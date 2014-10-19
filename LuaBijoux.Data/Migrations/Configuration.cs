@@ -1,11 +1,14 @@
+using System;
+using Microsoft.AspNet.Identity;
+using LuaBijoux.Data.Identity;
+using LuaBijoux.Data.Identity.Models;
+using LuaBijoux.Core.Logging;
+
 namespace LuaBijoux.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<LuaBijoux.Data.LuaBijouxContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<LuaBijouxContext>
     {
         public Configuration()
         {
@@ -13,20 +16,54 @@ namespace LuaBijoux.Data.Migrations
             ContextKey = "LuaBijoux.Data.LuaBijouxContext";
         }
 
-        protected override void Seed(LuaBijoux.Data.LuaBijouxContext context)
+        protected override void Seed(LuaBijouxContext db)
         {
-            //  This method will be called after migrating to the latest version.
+            const string username = "admin@admin.com";
+            const string password = "123456";
+            const string roleName = "Administrator";
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            var applicationRoleManager = IdentityFactory.CreateRoleManager(db);
+            var applicationUserManager = IdentityFactory.CreateUserManager(db);
+
+
+            //Create Role Admin if it does not exist
+            var role = applicationRoleManager.FindByName(roleName);
+            if (role == null)
+            {
+                role = new ApplicationIdentityRole { Name = roleName };
+                applicationRoleManager.Create(role);
+            }
+
+            var user = applicationUserManager.FindByName(username);
+            if (user == null)
+            {
+                user = new ApplicationIdentityUser { UserName = username, Email = username };
+                applicationUserManager.Create(user, password);
+                applicationUserManager.SetLockoutEnabled(user.Id, false);
+            }
+
+            // Add user admin to Role Admin if not already added
+            var rolesForUser = applicationUserManager.GetRoles(user.Id);
+            if (!rolesForUser.Contains(role.Name))
+            {
+                applicationUserManager.AddToRole(user.Id, role.Name);
+            }
+
+            var context = new LuaBijouxContext("name=AppContext", new DebugLogger());
+            context.SaveChanges();
+        }
+    }
+
+    class DebugLogger : ILogger
+    {
+        public void Log(string message)
+        {
+
+        }
+
+        public void Log(Exception ex)
+        {
+
         }
     }
 }
