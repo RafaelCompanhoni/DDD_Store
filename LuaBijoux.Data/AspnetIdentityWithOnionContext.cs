@@ -18,10 +18,12 @@ namespace LuaBijoux.Data
         private static readonly object Lock = new object();
         private static bool _databaseInitialized;
 
-        public LuaBijouxContext(string nameOrConnectionString, ILogger logger)
-            : base(nameOrConnectionString)
+        public LuaBijouxContext() : base("AppContext") { } 
+
+        public LuaBijouxContext(string nameOrConnectionString, ILogger logger) : base(nameOrConnectionString)
         {
             Database.Log = logger.Log;
+
             if (_databaseInitialized)
             {
                 return;

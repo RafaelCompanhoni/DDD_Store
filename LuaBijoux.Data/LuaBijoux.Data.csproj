@@ -87,6 +87,15 @@
     <Compile Include="Identity\Models\IdentityModels.cs" />
     <Compile Include="Identity\SmsService.cs" />
     <Compile Include="IEntitiesContext.cs" />
+    <Compile Include="Migrations\201410132059596_InitialCreate.cs" />
+    <Compile Include="Migrations\201410132059596_InitialCreate.Designer.cs">
+      <DependentUpon>201410132059596_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410190548567_UserProfile.cs" />
+    <Compile Include="Migrations\201410190548567_UserProfile.Designer.cs">
+      <DependentUpon>201410190548567_UserProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
@@ -99,6 +108,14 @@
       <Project>{91826647-9da6-4adb-af14-21ad487d91cd}</Project>
       <Name>LuaBijoux.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410132059596_InitialCreate.resx">
+      <DependentUpon>201410132059596_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410190548567_UserProfile.resx">
+      <DependentUpon>201410190548567_UserProfile.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

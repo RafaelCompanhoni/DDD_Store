@@ -245,6 +245,8 @@ namespace LuaBijoux.Data.Identity
         {
             var user = await _userManager.FindAsync(userName, password).ConfigureAwait(false);
             return user.ToAppUser();
+
+            
         }
 
         public virtual async Task<AppUser> FindByEmailAsync(string email)

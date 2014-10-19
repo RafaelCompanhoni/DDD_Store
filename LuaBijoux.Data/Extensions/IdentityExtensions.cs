@@ -53,6 +53,12 @@ namespace LuaBijoux.Data.Extensions
             applicationIdentityUser.SecurityStamp = appUser.SecurityStamp;
             applicationIdentityUser.TwoFactorEnabled = appUser.TwoFactorEnabled;
 
+            // Propriedades adicionais
+            applicationIdentityUser.FirstName = appUser.FirstName;
+            applicationIdentityUser.LastName = appUser.LastName;
+            applicationIdentityUser.Cpf = appUser.Cpf;
+            applicationIdentityUser.Birthdate = appUser.Birthdate;
+
             foreach (var claim in appUser.Claims)
             {
                 applicationIdentityUser.Claims.Add(new ApplicationIdentityUserClaim
@@ -114,6 +120,13 @@ namespace LuaBijoux.Data.Extensions
             appUser.PhoneNumberConfirmed = applicationIdentityUser.PhoneNumberConfirmed;
             appUser.SecurityStamp = applicationIdentityUser.SecurityStamp;
             appUser.TwoFactorEnabled = applicationIdentityUser.TwoFactorEnabled;
+
+            // Propriedades adicionais
+            appUser.FirstName = applicationIdentityUser.FirstName;
+            appUser.LastName = applicationIdentityUser.LastName;
+            appUser.Cpf = applicationIdentityUser.Cpf;
+            appUser.Birthdate = applicationIdentityUser.Birthdate;
+
             foreach (var claim in applicationIdentityUser.Claims)
             {
                 appUser.Claims.Add(new ApplicationUserClaim

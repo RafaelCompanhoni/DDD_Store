@@ -37,7 +37,7 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             {
                 return View(userModel);
             }
-
+             
             AppUser user = Mapper.Map<UserViewModel, AppUser>(userModel);
             var creationResult = await _userManager.CreateAsync(user, userModel.Password);
 
@@ -51,7 +51,7 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             TempData["status"] = "alert-success";
             TempData["message"] = string.Format("Usuário criado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
 
-            string redirectionTarget = Request.Form["save-and-back"] != "CreateUser" ? "ManageUsers" : null;
+            string redirectionTarget = Request.Form["save-and-back"] != null ? "ManageUsers" : "CreateUser";
             return RedirectToAction(redirectionTarget);
         }
 
