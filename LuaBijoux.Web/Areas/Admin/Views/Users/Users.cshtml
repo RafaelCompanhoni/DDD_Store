@@ -8,10 +8,11 @@
 
 <h2>Usuários</h2>
 
-<div class="panel panel-default filter-options">
+<div class="panel panel-default">
     <div class="panel-heading" data-toggle="collapse" data-target="#collapse-options">
         <span class="panel-title panel-heading"><i class="glyphicon glyphicon-filter"></i> Filtros</span>
     </div>
+
     <div id="collapse-options" class="panel-collapse collapse">
         <div class="panel-body">
             CONFIG
@@ -21,7 +22,7 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <table class="table table-bordered table-striped main-table">
+        <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -38,16 +39,16 @@
                     <td>
                         @using (Html.BeginForm("DeleteUser", "UserAdmin", new { id = user.Id }))
                         {
-                            @Html.ActionLink("Editar", "EditUser", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink("Editar", "Edit", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
                             <button class="btn btn-danger btn-xs" type="submit">Deletar</button>
                         }
                     </td>
                 </tr>
             }
-        
         </table>
     </div>
+
     <div class="panel-footer">
-        <a href="@Url.RouteUrl(new { controller = "Users", action = "CreateUser", category = "users", subcategory = "manage-users" })" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>  Criar Novo Usuário</a>
+        <a href="@Url.RouteUrl(new { controller = "Users", action = "Create", category = "users", subcategory = "users" })" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>  Criar Novo Usuário</a>
     </div>
 </div>

@@ -1,4 +1,4 @@
-﻿@model LuaBijoux.Web.Areas.Admin.Models.UserViewModel
+﻿@model LuaBijoux.Web.Areas.Admin.Models.CreateUserVM
 
 @{
     ViewBag.Title = "Criar Usuário";
@@ -9,6 +9,8 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+    
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName)
         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control"})
@@ -61,6 +63,6 @@
     
     <button type="submit" class="btn btn-primary" name="save-and-back"><i class="glyphicon glyphicon-ok"></i> Criar e Voltar</button>
     <button type="submit" class="btn btn-primary" name="save-and-continue"><i class="glyphicon glyphicon-repeat"></i> Criar e Continuar</button>
-    <a class="btn btn-primary" href="@Url.RouteUrl(new { controller = "Users", action = "ManageUsers", category = "users", subcategory = "manage-users" })"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
+    <a class="btn btn-primary" href="@Url.RouteUrl(new { controller = "Users", action = "Users", category = "users", subcategory = "users" })"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
 }
 

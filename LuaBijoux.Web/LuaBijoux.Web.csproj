@@ -188,6 +188,7 @@
     <Content Include="Content\js\storefront\frameworks\jquery-1.11.1.min.js" />
     <Content Include="Content\js\storefront\scripts.js" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <None Include="Content\js\_references.js" />
     <Content Include="Global.asax" />
     <None Include="Content\js\admin\frameworks\jquery\jquery-1.8.3-vsdoc.js" />
@@ -205,7 +206,8 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\NavController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\EditUserVM.cs" />
+    <Compile Include="Areas\Admin\Models\CreateUserVM.cs" />
     <Compile Include="Areas\Storefront\Controllers\HomeController.cs" />
     <Compile Include="Areas\Storefront\StorefrontAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
@@ -226,8 +228,8 @@
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Nav\Menu.cshtml" />
     <Content Include="Areas\Admin\Views\Nav\TopMenu.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\ManageUsers.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\CreateUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
     <Content Include="Areas\Storefront\Views\Home\Index.cshtml" />
     <Content Include="Content\fonts\font-awesome\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\font-awesome\fontawesome-webfont.ttf" />

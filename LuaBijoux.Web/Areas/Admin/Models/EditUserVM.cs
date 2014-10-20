@@ -5,7 +5,7 @@ using LuaBijoux.Web.Infrastructure.Validators;
 
 namespace LuaBijoux.Web.Areas.Admin.Models
 {
-    public class UserViewModel
+    public class EditUserVM
     {
         [Display(Name = "Nome")]
         [Required(ErrorMessage = "Por favor, informe o nome.")]

@@ -13,32 +13,33 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
 {
     public class UsersController : Controller
     {
-        private IApplicationUserManager _userManager;
+        private readonly IApplicationUserManager _userManager;
 
         public UsersController(IApplicationUserManager userManager) 
         {
             _userManager = userManager;
         }
 
-        public async Task<ActionResult> ManageUsers()
+        public async Task<ActionResult> Users()
         {
             return View(await _userManager.GetUsersAsync());
         }
 
-        public ActionResult CreateUser()
+        public ActionResult Create()
         {
-            return View(new UserViewModel());
+            return View(new CreateUserVM());
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateUser(UserViewModel userModel)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(CreateUserVM userModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(userModel);
             }
              
-            AppUser user = Mapper.Map<UserViewModel, AppUser>(userModel);
+            AppUser user = Mapper.Map<CreateUserVM, AppUser>(userModel);
             var creationResult = await _userManager.CreateAsync(user, userModel.Password);
 
             if (!creationResult.Succeeded)
@@ -51,8 +52,34 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             TempData["status"] = "alert-success";
             TempData["message"] = string.Format("Usuário criado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
 
-            string redirectionTarget = Request.Form["save-and-back"] != null ? "ManageUsers" : "CreateUser";
+            string redirectionTarget = Request.Form["save-and-back"] != null ? "Users" : "Create";
             return RedirectToAction(redirectionTarget);
+        }
+
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return View("Users");
+            }
+
+            AppUser user = await _userManager.FindByIdAsync(id ?? default(int));
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            CreateUserVM userViewModel = Mapper.Map<AppUser, CreateUserVM>(user);
+            return View(userViewModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(CreateUserVM userModel)
+        {
+            TempData["status"] = "alert-success";
+            TempData["message"] = string.Format("Usuário alterado com sucesso. E-mail: <strong>{0}</strong>", userModel.Email);
+
+            return View("Users");
         }
 
         /// <summary>
@@ -62,6 +89,8 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
         /// <returns>True caso o email já tenha sido registrado</returns>
         public async Task<JsonResult> IsEmailAlreadyRegistered(string email)
         {
+
+
             AppUser user = await _userManager.FindByEmailAsync(email);
             return (user != null) ? Json("O email informado já foi cadastrado", JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
         }

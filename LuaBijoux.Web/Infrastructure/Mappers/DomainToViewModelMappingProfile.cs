@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LuaBijoux.Core.DomainModels.Identity;
 using LuaBijoux.Web.Areas.Admin.Models;
 
 namespace LuaBijoux.Web.Infrastructure.Mappers
@@ -12,7 +13,8 @@ namespace LuaBijoux.Web.Infrastructure.Mappers
 
         protected override void Configure()
         {
-           //  Mapper.CreateMap<User, UserViewModel>();
+            Mapper.CreateMap<AppUser, CreateUserVM>();
+            Mapper.CreateMap<AppUser, EditUserVM>();
         }
     }
 }

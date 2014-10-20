@@ -16,8 +16,8 @@ namespace LuaBijoux.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            ).DataTokens = new RouteValueDictionary(new { area = "Storefront" });
+                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
+            ).DataTokens = new RouteValueDictionary(new { area = "Admin" });
         }
     }
 }

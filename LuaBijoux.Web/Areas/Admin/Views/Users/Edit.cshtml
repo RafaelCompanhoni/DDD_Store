@@ -1,0 +1,65 @@
+﻿@model LuaBijoux.Web.Areas.Admin.Models.CreateUserVM
+
+@{
+    ViewBag.Title = "Editar Usuário";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Editar Usuário</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.EmailConfirmation)
+        @Html.TextBoxFor(m => m.EmailConfirmation, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.EmailConfirmation)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cpf)
+        @Html.TextBoxFor(m => m.Cpf, new { @class = "form-control cpf"})
+        @Html.ValidationMessageFor(m => m.Cpf)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Birthdate)
+        @{ Html.EnableClientValidation(false); }
+        @Html.TextBoxFor(m => m.Birthdate, new { @class = "form-control datepicker birthdate" })
+        @{ Html.EnableClientValidation(true);}
+        @Html.ValidationMessageFor(m => m.Birthdate)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    </div>
+    
+    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Salvar Modificações</button>
+    <a class="btn btn-primary" href="@Url.RouteUrl(new { controller = "Users", action = "Users", category = "users", subcategory = "users" })"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
+}
+
