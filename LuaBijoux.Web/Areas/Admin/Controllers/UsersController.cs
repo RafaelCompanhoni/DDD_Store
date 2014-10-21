@@ -64,16 +64,18 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             }
 
             AppUser user = await _userManager.FindByIdAsync(id ?? default(int));
+
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            CreateUserVM userViewModel = Mapper.Map<AppUser, CreateUserVM>(user);
+            EditUserVM userViewModel = Mapper.Map<AppUser, EditUserVM>(user);
             return View(userViewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(CreateUserVM userModel)
         {
             TempData["status"] = "alert-success";
@@ -87,12 +89,10 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
         /// </summary>
         /// <param name="email">Email</param>
         /// <returns>True caso o email já tenha sido registrado</returns>
-        public async Task<JsonResult> IsEmailAlreadyRegistered(string email)
+        public async Task<JsonResult> IsEmailAlreadyRegistered(string email, int? id)
         {
-
-
             AppUser user = await _userManager.FindByEmailAsync(email);
-            return (user != null) ? Json("O email informado já foi cadastrado", JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
+            return (user != null && id != user.Id) ? Json("O email informado já foi cadastrado", JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model LuaBijoux.Web.Areas.Admin.Models.CreateUserVM
+﻿@model LuaBijoux.Web.Areas.Admin.Models.EditUserVM
 
 @{
     ViewBag.Title = "Editar Usuário";
@@ -9,6 +9,8 @@
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m=>m.Id)
+    
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName)
         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control"})
