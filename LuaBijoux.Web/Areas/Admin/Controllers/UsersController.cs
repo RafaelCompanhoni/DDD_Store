@@ -32,21 +32,21 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreateUserVM userModel)
+        public async Task<ActionResult> Create(CreateUserVM createUserVM)
         {
             if (!ModelState.IsValid)
             {
-                return View(userModel);
+                return View(createUserVM);
             }
-             
-            AppUser user = Mapper.Map<CreateUserVM, AppUser>(userModel);
-            var creationResult = await _userManager.CreateAsync(user, userModel.Password);
+
+            AppUser user = Mapper.Map<CreateUserVM, AppUser>(createUserVM);
+            var creationResult = await _userManager.CreateAsync(user, createUserVM.Password);
 
             if (!creationResult.Succeeded)
             {
                 TempData["status"] = "alert-danger";
                 TempData["message"] = string.Format("Não foi possível criar o usuário - erro no acesso ao banco de dados.");
-                return View(userModel);
+                return View(createUserVM);
             }
 
             TempData["status"] = "alert-success";
@@ -60,7 +60,7 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return View("Users");
+                return RedirectToAction("Users");
             }
 
             AppUser user = await _userManager.FindByIdAsync(id ?? default(int));
@@ -76,12 +76,29 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(CreateUserVM userModel)
+        public async Task<ActionResult> Edit(EditUserVM editUserVM)
         {
-            TempData["status"] = "alert-success";
-            TempData["message"] = string.Format("Usuário alterado com sucesso. E-mail: <strong>{0}</strong>", userModel.Email);
+            if (!ModelState.IsValid)
+            {
+                return View(editUserVM);
+            }
 
-            return View("Users");
+            AppUser user = await _userManager.FindByIdAsync(Int32.Parse(editUserVM.Id));
+            Mapper.Map(editUserVM, user);
+
+            var creationResult = await _userManager.UpdateAsync(user.Id);
+            
+            if (!creationResult.Succeeded)
+            {
+                TempData["status"] = "alert-danger";
+                TempData["message"] = string.Format("Não foi possível modificar o usuário - erro no acesso ao banco de dados.");
+                return View(editUserVM);
+            }
+
+            TempData["status"] = "alert-success";
+            TempData["message"] = string.Format("Usuário alterado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
+
+            return RedirectToAction("Users");
         }
 
         /// <summary>

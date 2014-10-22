@@ -59,6 +59,7 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\QueryableExtensions.cs" />
     <Compile Include="Identity\IApplicationRoleManager.cs" />
+    <Compile Include="Identity\IApplicationUserManagerOld.cs" />
     <Compile Include="Identity\IApplicationUserManager.cs" />
     <Compile Include="Identity\SignInStatus.cs" />
     <Compile Include="Logging\ILogger.cs" />

@@ -41,13 +41,11 @@ namespace LuaBijoux.Web.Areas.Admin.Models
         public DateTime? Birthdate { get; set; }
 
         [Display(Name = "Senha")]
-        [Required(ErrorMessage = "Por favor, informe a senha.")]
         [DataType(DataType.Password)]
         [RegularExpression(@"^.{6,}$", ErrorMessage = "A senha deve conter no mínimo 6 caracteres.")]
         public string Password { get; set; }
 
         [Display(Name = "Confirme a senha")]
-        [DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "As senhas informadas devem ser iguais.")]
         public string ConfirmPassword { get; set; }
     }

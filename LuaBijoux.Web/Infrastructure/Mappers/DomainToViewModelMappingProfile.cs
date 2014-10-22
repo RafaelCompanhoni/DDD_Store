@@ -14,7 +14,8 @@ namespace LuaBijoux.Web.Infrastructure.Mappers
         protected override void Configure()
         {
             Mapper.CreateMap<AppUser, CreateUserVM>();
-            Mapper.CreateMap<AppUser, EditUserVM>();
+            Mapper.CreateMap<AppUser, EditUserVM>()
+                .ForMember(d => d.EmailConfirmation, o => o.MapFrom(u => u.Email));
         }
     }
 }
