@@ -86,7 +86,7 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             AppUser user = await _userManager.FindByIdAsync(Int32.Parse(editUserVM.Id));
             Mapper.Map(editUserVM, user);
 
-            var creationResult = await _userManager.UpdateAsync(user.Id);
+            var creationResult = await _userManager.UpdateAsync(user);
             
             if (!creationResult.Succeeded)
             {

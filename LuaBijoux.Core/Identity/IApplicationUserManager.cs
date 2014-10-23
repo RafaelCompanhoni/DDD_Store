@@ -13,6 +13,6 @@ namespace LuaBijoux.Core.Identity
         Task<ApplicationIdentityResult> CreateAsync(AppUser user, string password);
         Task<AppUser> FindByIdAsync(int userId);
         Task<AppUser> FindByEmailAsync(string email);
-        Task<ApplicationIdentityResult> UpdateAsync(int userId);
+        Task<ApplicationIdentityResult> UpdateAsync(AppUser user);
     }
 }

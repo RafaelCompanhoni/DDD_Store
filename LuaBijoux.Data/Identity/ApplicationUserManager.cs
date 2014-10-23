@@ -60,16 +60,24 @@ namespace LuaBijoux.Data.Identity
             return identityResult.ToApplicationIdentityResult();
         }
 
-        public async Task<ApplicationIdentityResult> UpdateAsync(int userId)
+        public async Task<ApplicationIdentityResult> UpdateAsync(AppUser user)
         {
-            var applicationUser = await _userManager.FindByIdAsync(userId).ConfigureAwait(false);
-
-            if (applicationUser == null)
+            if (user == null)
             {
-                return new ApplicationIdentityResult(new[] { "Invalid user Id" }, false);
+                return new ApplicationIdentityResult(new[] { "Usuário não informado" }, false);
             }
-            var identityResult = await _userManager.UpdateAsync(applicationUser).ConfigureAwait(false);
-            return identityResult.ToApplicationIdentityResult();
+
+            try
+            {
+                ApplicationIdentityUser applicationUser = _userManager.FindById(user.Id);
+                applicationUser.CopyAppUserProperties(user);
+                var identityResult = await _userManager.UpdateAsync(applicationUser);
+                return identityResult.ToApplicationIdentityResult();
+            }
+            catch(Exception e)
+            {
+                return new ApplicationIdentityResult(new[] { e.Message }, false);
+            }
         }
 
         public void Dispose()
