@@ -40,9 +40,9 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             }
 
             AppUser user = Mapper.Map<CreateUserVM, AppUser>(createUserVM);
-            var creationResult = await _userManager.CreateAsync(user, createUserVM.Password);
+            var result = await _userManager.CreateAsync(user, createUserVM.Password);
 
-            if (!creationResult.Succeeded)
+            if (!result.Succeeded)
             {
                 TempData["status"] = "alert-danger";
                 TempData["message"] = string.Format("Não foi possível criar o usuário - erro no acesso ao banco de dados.");
@@ -86,9 +86,9 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             AppUser user = await _userManager.FindByIdAsync(Int32.Parse(editUserVM.Id));
             Mapper.Map(editUserVM, user);
 
-            var creationResult = await _userManager.UpdateAsync(user);
-            
-            if (!creationResult.Succeeded)
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
             {
                 TempData["status"] = "alert-danger";
                 TempData["message"] = string.Format("Não foi possível modificar o usuário - erro no acesso ao banco de dados.");
@@ -97,6 +97,29 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
 
             TempData["status"] = "alert-success";
             TempData["message"] = string.Format("Usuário alterado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
+
+            return RedirectToAction("Users");
+        }
+
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Users");
+            }
+
+            var result = await _userManager.DeleteAsync(id ?? default(int));
+
+            if (!result.Succeeded)
+            {
+                TempData["status"] = "alert-danger";
+                TempData["message"] = string.Format("Não foi possível excluir o usuário - erro no acesso ao banco de dados.");
+            }
+            else
+            {
+                TempData["status"] = "alert-success";
+                TempData["message"] = string.Format("Usuário excluído com sucesso.");
+            }
 
             return RedirectToAction("Users");
         }

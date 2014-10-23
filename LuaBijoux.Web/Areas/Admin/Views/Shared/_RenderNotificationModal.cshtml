@@ -1,0 +1,40 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="Excluir" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                <h4 class="modal-title" id="myModalLabel">Excluir</h4>
+            </div>
+
+            <div class="modal-body">
+                <span id="delete-warning-message"></span>
+            </div>
+
+            <div class="modal-footer">
+                @using (Html.BeginForm("", "", "", FormMethod.Post, new { @id = "delete-form" }))
+                {
+                    @Html.Hidden("id", "", new { @id = "object-id" })
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary" onclick="setDeleteFormAction()">Confirmar Exclusão</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Clique do botão para deletar - Salva id do objeto a ser apagado em 'object-id' e exibe modal de confirmação
+    function ShowDeleteModalConfirmation(objectId, deleteWarningMessage) {
+        $('#object-id').val(objectId);
+        $('#delete-warning-message').text(deleteWarningMessage);
+        $('#confirm-delete-modal').modal('show');
+    };
+
+    // Clique do botão de confirmação de deleção - Atualiza action do formulário 
+    function setDeleteFormAction() {
+        var deleteFormAction = '@Url.Action("Delete")';
+        $('#delete-form').attr('action', deleteFormAction);
+    };
+</script>

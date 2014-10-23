@@ -189,6 +189,9 @@
     <Content Include="Content\js\storefront\scripts.js" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Storefront\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_RenderNotificationModal.cshtml" />
     <None Include="Content\js\_references.js" />
     <Content Include="Global.asax" />
     <None Include="Content\js\admin\frameworks\jquery\jquery-1.8.3-vsdoc.js" />
@@ -441,7 +444,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Storefront\Models\" />
-    <Folder Include="Areas\Storefront\Views\Shared\" />
     <Folder Include="Content\img\admin\" />
     <Folder Include="Content\img\storefront\" />
   </ItemGroup>

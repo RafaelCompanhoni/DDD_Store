@@ -37,11 +37,8 @@
                     <td>@user.UserName</td>
                     <td>@user.Email</td>
                     <td>
-                        @using (Html.BeginForm("DeleteUser", "UserAdmin", new { id = user.Id }))
-                        {
-                            @Html.ActionLink("Editar", "Edit", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
-                            <button class="btn btn-danger btn-xs" type="submit">Deletar</button>
-                        }
+                        @Html.ActionLink("Editar", "Edit", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
+                        <a class="btn btn-danger btn-xs" onclick="ShowDeleteModalConfirmation('@user.Id', 'Você tem certeza que deseja excluir @user.Email ?')">Deletar</a>
                     </td>
                 </tr>
             }
@@ -52,3 +49,9 @@
         <a href="@Url.RouteUrl(new { controller = "Users", action = "Create", category = "users", subcategory = "users" })" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>  Criar Novo Usuário</a>
     </div>
 </div>
+
+@section Optional {
+
+    @{ Html.RenderPartial("_RenderNotificationModal"); }
+
+}

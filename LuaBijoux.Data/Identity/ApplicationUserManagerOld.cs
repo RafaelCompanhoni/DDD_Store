@@ -759,6 +759,7 @@ namespace LuaBijoux.Data.Identity
 
         // As adaptações abaixo são apenas para poder compilar -- este arquivo deverá ser excluído
 
+
         public async Task<ApplicationIdentityResult> UpdateAsync(AppUser user)
         {
             if (user == null)

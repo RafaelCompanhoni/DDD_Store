@@ -14,5 +14,6 @@ namespace LuaBijoux.Core.Identity
         Task<AppUser> FindByIdAsync(int userId);
         Task<AppUser> FindByEmailAsync(string email);
         Task<ApplicationIdentityResult> UpdateAsync(AppUser user);
+        Task<ApplicationIdentityResult> DeleteAsync(int userId);
     }
 }
