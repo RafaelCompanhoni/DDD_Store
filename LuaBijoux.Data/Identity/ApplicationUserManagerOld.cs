@@ -15,7 +15,7 @@ namespace LuaBijoux.Data.Identity
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
-    public class ApplicationUserManagerOld : IApplicationUserManager
+    public class ApplicationUserManagerOld
     {
         private readonly UserManager<ApplicationIdentityUser, int> _userManager;
         private readonly IAuthenticationManager _authenticationManager;
@@ -755,20 +755,6 @@ namespace LuaBijoux.Data.Identity
                 }
             }
             _disposed = true;
-        }
-
-        // As adaptações abaixo são apenas para poder compilar -- este arquivo deverá ser excluído
-
-
-        public async Task<ApplicationIdentityResult> UpdateAsync(AppUser user)
-        {
-            if (user == null)
-            {
-                return new ApplicationIdentityResult(new[] { "Usuário não informado" }, false);
-            }
-
-            var identityResult = await _userManager.UpdateAsync(user.ToApplicationUser()).ConfigureAwait(false);
-            return identityResult.ToApplicationIdentityResult();
         }
     }
 }

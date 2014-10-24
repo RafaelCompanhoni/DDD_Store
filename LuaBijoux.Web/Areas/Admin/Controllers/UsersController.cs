@@ -101,6 +101,7 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             return RedirectToAction("Users");
         }
 
+        [HttpPost]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,7 +109,7 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
                 return RedirectToAction("Users");
             }
 
-            var result = await _userManager.DeleteAsync(id ?? default(int));
+            var result = await _userManager.DeleteAsync((int) id);
 
             if (!result.Succeeded)
             {
@@ -125,14 +126,28 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// Verifica se o email informado já foi registrado -- Migrar para WebAPI
+        /// Verifica se o email informado já foi registrado 
         /// </summary>
-        /// <param name="email">Email</param>
+        /// <param name="email">Email a consultar</param>
+        /// <param name="userId">ID do usuário</param>
         /// <returns>True caso o email já tenha sido registrado</returns>
-        public async Task<JsonResult> IsEmailAlreadyRegistered(string email, int? id)
+        public JsonResult IsEmailAlreadyRegistered(string email, string userId)
         {
-            AppUser user = await _userManager.FindByEmailAsync(email);
-            return (user != null && id != user.Id) ? Json("O email informado já foi cadastrado", JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
+            AppUser user = _userManager.FindByEmail(email);
+            return (user != null && userId != user.Id.ToString()) ? Json(false, JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Verifica se o cpf informado já foi registrado 
+        /// </summary>
+        /// <param name="cpf">CPF a consultar</param>
+        /// <param name="userId">ID do usuário</param>
+        /// <returns></returns>
+        public JsonResult IsCpfAlreadyRegistered(string cpf, string userId)
+        {
+            string parsedCpf = cpf.Replace(".", "").Replace("-", "");
+            AppUser user = _userManager.FindByCpf(parsedCpf);
+            return (user != null && userId != user.Id.ToString()) ? Json(false, JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

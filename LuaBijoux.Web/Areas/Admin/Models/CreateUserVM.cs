@@ -1,12 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using LuaBijoux.Web.Infrastructure.Attributes;
 using LuaBijoux.Web.Infrastructure.Validators;
 
 namespace LuaBijoux.Web.Areas.Admin.Models
 {
     public class CreateUserVM
     {
+        public string Id { get; set; } 
+
         [Display(Name = "Nome")]
         [Required(ErrorMessage = "Por favor, informe o nome.")]
         [StringLength(20, ErrorMessage = "O tamanho máximo para o nome é de 20 caracteres.")]
@@ -21,7 +24,7 @@ namespace LuaBijoux.Web.Areas.Admin.Models
         [Required(ErrorMessage = "Por favor, informe o e-mail.")]
         [EmailAddress(ErrorMessage = "Endereço de e-mail inválido.")]
         [StringLength(60, ErrorMessage = "O tamanho máximo para o email é de 60 caracteres.")]
-        [Remote("IsEmailAlreadyRegistered", "Users")]
+        [RemoteClientServer("IsEmailAlreadyRegistered", "Users", AdditionalFields = "Id")]
         public string Email { get; set; }
 
         [Display(Name = "Confirmação do e-mail")]
@@ -30,6 +33,7 @@ namespace LuaBijoux.Web.Areas.Admin.Models
 
         [Display(Name = "CPF")]
         [Required(ErrorMessage = "Por favor, informe o CPF.")]
+        [RemoteClientServer("IsCpfAlreadyRegistered", "Users")]
         [Cpf(ErrorMessage = "O CPF informado não é válido.")]
         public string Cpf { get; set; }
 

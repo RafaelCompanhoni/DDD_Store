@@ -9,6 +9,7 @@ using LuaBijoux.Services;
 using LuaBijoux.Web;
 using Autofac;
 using Autofac.Integration.Mvc;
+using LuaBijoux.Web.Areas.Admin.Controllers;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IocConfig), "RegisterDependencies")]
 
@@ -33,6 +34,9 @@ namespace LuaBijoux.Bootstrapper
             });
             builder.Register(b => NLogLogger.Instance).SingleInstance();
             builder.RegisterModule(new IdentityModule());
+
+            // Controllers
+            builder.RegisterType<UsersController>();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

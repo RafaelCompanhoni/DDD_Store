@@ -20,6 +20,12 @@ namespace LuaBijoux.Data.Identity
         private readonly IAuthenticationManager _authenticationManager;
         private bool _disposed;
 
+        public async Task<IEnumerable<AppUser>> GetUsersAsync()
+        {
+            var users = await _userManager.Users.ToListAsync().ConfigureAwait(false);
+            return users.ToAppUserList();
+        } 
+
         public ApplicationUserManager(UserManager<ApplicationIdentityUser, int> userManager, IAuthenticationManager authenticationManager)
         {
             _userManager = userManager;
@@ -37,12 +43,24 @@ namespace LuaBijoux.Data.Identity
             var user = await _userManager.FindByEmailAsync(email).ConfigureAwait(false);
             return user.ToAppUser();
         }
-       
-        public async Task<IEnumerable<AppUser>> GetUsersAsync()
+
+        public AppUser FindByEmail(string email)
+        {
+            var user = _userManager.FindByEmail(email);
+            return user.ToAppUser();
+        }
+
+        public async Task<AppUser> FindByCpfAsync(string cpf)
         {
             var users = await _userManager.Users.ToListAsync().ConfigureAwait(false);
-            return users.ToAppUserList();
-        } 
+            return users.FirstOrDefault(u => u.Cpf == cpf).ToAppUser();
+        }
+
+        public AppUser FindByCpf(string cpf)
+        {
+            var users = _userManager.Users.ToList();
+            return users.FirstOrDefault(u => u.Cpf == cpf).ToAppUser();
+        }
 
         public async Task<ApplicationIdentityResult> CreateAsync(AppUser user)
         {
@@ -78,6 +96,8 @@ namespace LuaBijoux.Data.Identity
             var identityResult = await _userManager.DeleteAsync(applicationUser).ConfigureAwait(false);
             return identityResult.ToApplicationIdentityResult();
         }
+
+
 
         public void Dispose()
         {
