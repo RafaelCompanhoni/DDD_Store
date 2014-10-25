@@ -131,10 +131,10 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
         /// <param name="email">Email a consultar</param>
         /// <param name="userId">ID do usuário</param>
         /// <returns>True caso o email já tenha sido registrado</returns>
-        public JsonResult IsEmailAlreadyRegistered(string email, string userId)
+        public JsonResult IsEmailAlreadyRegistered(string email, string Id)
         {
             AppUser user = _userManager.FindByEmail(email);
-            return (user != null && userId != user.Id.ToString()) ? Json(false, JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
+            return (user != null && Id != user.Id.ToString()) ? Json(false, JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -143,11 +143,11 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
         /// <param name="cpf">CPF a consultar</param>
         /// <param name="userId">ID do usuário</param>
         /// <returns></returns>
-        public JsonResult IsCpfAlreadyRegistered(string cpf, string userId)
+        public JsonResult IsCpfAlreadyRegistered(string cpf, string Id)
         {
             string parsedCpf = cpf.Replace(".", "").Replace("-", "");
             AppUser user = _userManager.FindByCpf(parsedCpf);
-            return (user != null && userId != user.Id.ToString()) ? Json(false, JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
+            return (user != null && Id != user.Id.ToString()) ? Json(false, JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

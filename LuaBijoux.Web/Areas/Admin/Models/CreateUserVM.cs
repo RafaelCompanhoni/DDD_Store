@@ -24,7 +24,7 @@ namespace LuaBijoux.Web.Areas.Admin.Models
         [Required(ErrorMessage = "Por favor, informe o e-mail.")]
         [EmailAddress(ErrorMessage = "Endereço de e-mail inválido.")]
         [StringLength(60, ErrorMessage = "O tamanho máximo para o email é de 60 caracteres.")]
-        [RemoteClientServer("IsEmailAlreadyRegistered", "Users", AdditionalFields = "Id")]
+        [RemoteClientServer("IsEmailAlreadyRegistered", "Users", AdditionalFields = "Id", ErrorMessage = "O email informado já foi registrado.")]
         public string Email { get; set; }
 
         [Display(Name = "Confirmação do e-mail")]
@@ -33,8 +33,8 @@ namespace LuaBijoux.Web.Areas.Admin.Models
 
         [Display(Name = "CPF")]
         [Required(ErrorMessage = "Por favor, informe o CPF.")]
-        [RemoteClientServer("IsCpfAlreadyRegistered", "Users")]
         [Cpf(ErrorMessage = "O CPF informado não é válido.")]
+        [RemoteClientServer("IsCpfAlreadyRegistered", "Users", AdditionalFields = "Id", ErrorMessage = "O CPF informado já foi registrado.")]
         public string Cpf { get; set; }
 
         [Display(Name = "Data de nascimento")]

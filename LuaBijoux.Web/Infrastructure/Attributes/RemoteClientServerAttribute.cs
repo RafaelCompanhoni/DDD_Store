@@ -20,7 +20,7 @@ namespace LuaBijoux.Web.Infrastructure.Attributes
             //      .FirstOrDefault(type => type.Name.ToLower() == string.Format("{0}Controller", this.RouteData["controller"].ToString().ToLower())) : Esta filtragem faz o seguinte:
             //          1. Percorre todos os tipos do assembly 
             //          2. Busca o nome do controller que está disparando o atributo com RouteDate["controller"] -- MAS -- este nome vem sem o sufixo 'Controller'
-            //          3. Anexa o sufixo e cria a string [NOME-CONTROLLER]Controller para então a utilizar para achar o controller com a query LINQ FirstOrDerfault
+            //          3. Anexa o sufixo 'Controller' e cria a string [NOME-CONTROLLER]Controller para então retornar o controller com a query LINQ FirstOrDerfault
             Type controller =
                 Assembly.GetExecutingAssembly()
                     .GetTypes()
@@ -34,7 +34,7 @@ namespace LuaBijoux.Web.Infrastructure.Attributes
                 if (validationAction != null)
                 {
                     // obtém os parâmetros a serem passados para o action method (incluindo os additional fields)
-                    List<object> propValues = new List<object> {value};
+                    List<object> propValues = new List<object> { value };
 
                     // instancia o controller
                     if (!(string.IsNullOrWhiteSpace(this.AdditionalFields) || string.IsNullOrEmpty(this.AdditionalFields)))
@@ -52,6 +52,7 @@ namespace LuaBijoux.Web.Infrastructure.Attributes
                         }
                     }
 
+                    // instancia o controller de acordo com o que foi registrado no gerenciador de dependências
                     object controllerInstance = DependencyResolver.Current.GetService(controller);
 
                     // executa o action method que realiza a validação e passa os parâmetros que estão sendo validados
