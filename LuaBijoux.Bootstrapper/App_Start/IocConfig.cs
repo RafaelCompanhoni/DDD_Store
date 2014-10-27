@@ -21,22 +21,24 @@ namespace LuaBijoux.Bootstrapper
         public static void RegisterDependencies()
         {
             var builder = new ContainerBuilder();
-            const string nameOrConnectionString = "name=AppContext";
+            
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterModule<AutofacWebTypesModule>();
             builder.RegisterGeneric(typeof(EntityRepository<>)).As(typeof(IRepository<>));
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>));
             builder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWork));
+
+            const string nameOrConnectionString = "name=AppContext";
             builder.Register<IEntitiesContext>(b =>
             {
-                var logger = b.Resolve<ILogger>();
-                var context = new LuaBijouxContext(nameOrConnectionString, logger);
+                var context = new LuaBijouxContext(nameOrConnectionString);
                 return context;
             });
+
             builder.Register(b => NLogLogger.Instance).SingleInstance();
             builder.RegisterModule(new IdentityModule());
 
-            // Controllers
+            // Controllers - necessário para implementação via reflexão em RemoteClientServerAttribute
             builder.RegisterType<UsersController>();
 
             var container = builder.Build();

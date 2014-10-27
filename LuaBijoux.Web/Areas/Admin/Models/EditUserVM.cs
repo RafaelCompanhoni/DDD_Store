@@ -33,8 +33,7 @@ namespace LuaBijoux.Web.Areas.Admin.Models
 
         [Display(Name = "CPF")]
         [Required(ErrorMessage = "Por favor, informe o CPF.")]
-        [Cpf(ErrorMessage = "O CPF informado não é válido.")]
-        [RemoteClientServer("IsCpfAlreadyRegistered", "Users", AdditionalFields = "Id", ErrorMessage = "O CPF informado já foi registrado.")]
+        [RemoteClientServer("ValidateCpf", "Users", AdditionalFields = "Id")]
         public string Cpf { get; set; }
 
         [Display(Name = "Data de nascimento")]

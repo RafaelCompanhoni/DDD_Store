@@ -1,8 +1,6 @@
-using System;
 using Microsoft.AspNet.Identity;
 using LuaBijoux.Data.Identity;
 using LuaBijoux.Data.Identity.Models;
-using LuaBijoux.Core.Logging;
 
 namespace LuaBijoux.Data.Migrations
 {
@@ -16,14 +14,14 @@ namespace LuaBijoux.Data.Migrations
             ContextKey = "LuaBijoux.Data.LuaBijouxContext";
         }
 
-        protected override void Seed(LuaBijouxContext db)
+        protected override void Seed(LuaBijouxContext context)
         {
             const string username = "admin@admin.com";
             const string password = "123456";
             const string roleName = "Administrator";
 
-            var applicationRoleManager = IdentityFactory.CreateRoleManager(db);
-            var applicationUserManager = IdentityFactory.CreateUserManager(db);
+            var applicationRoleManager = IdentityFactory.CreateRoleManager(context);
+            var applicationUserManager = IdentityFactory.CreateUserManager(context);
 
 
             //Create Role Admin if it does not exist
@@ -49,21 +47,8 @@ namespace LuaBijoux.Data.Migrations
                 applicationUserManager.AddToRole(user.Id, role.Name);
             }
 
-            var context = new LuaBijouxContext("name=AppContext", new DebugLogger());
+            // var context = new LuaBijouxContext("name=AppContext", new DebugLogger());
             context.SaveChanges();
-        }
-    }
-
-    class DebugLogger : ILogger
-    {
-        public void Log(string message)
-        {
-
-        }
-
-        public void Log(Exception ex)
-        {
-
         }
     }
 }

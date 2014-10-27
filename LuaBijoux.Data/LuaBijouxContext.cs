@@ -5,7 +5,6 @@ using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Threading.Tasks;
 using LuaBijoux.Core.DomainModels;
-using LuaBijoux.Core.Logging;
 using LuaBijoux.Data.Identity.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -16,29 +15,10 @@ namespace LuaBijoux.Data
         private ObjectContext _objectContext;
         private DbTransaction _transaction;
         private static readonly object Lock = new object();
-        private static bool _databaseInitialized;
+
+        public LuaBijouxContext(string nameOrConnectionString) : base(nameOrConnectionString) { }
 
         public LuaBijouxContext() : base("AppContext") { } 
-
-        public LuaBijouxContext(string nameOrConnectionString, ILogger logger) : base(nameOrConnectionString)
-        {
-            Database.Log = logger.Log;
-
-            if (_databaseInitialized)
-            {
-                return;
-            }
-            lock (Lock)
-            {
-                if (!_databaseInitialized)
-                {
-                    // Set the database intializer which is run once during application start
-                    // This seeds the database with admin user credentials and admin role
-                    Database.SetInitializer(new ApplicationDbInitializer());
-                    _databaseInitialized = true;
-                }
-            }
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
