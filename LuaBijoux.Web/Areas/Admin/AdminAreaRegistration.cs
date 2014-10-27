@@ -21,6 +21,12 @@ namespace LuaBijoux.Web.Areas.Admin
             );
 
             context.MapRoute(
+                name: "Admin_categories",
+                url: "Admin/{controller}/{action}/{category}/{subcategory}/{id}",
+                defaults: new { controller = "Dashboard", action = "Index", category = "dashboard", subcategory = "dashboard", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
                 name: "Admin_default",
                 url: "Admin/{controller}/{action}/{id}",
                 defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }

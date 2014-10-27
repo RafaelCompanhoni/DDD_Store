@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
 using System.Threading.Tasks;
@@ -20,7 +18,7 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
-        public async Task<ActionResult> Users()
+        public async Task<ActionResult> Index()
         {
             return View(await _userManager.GetUsersAsync());
         }
@@ -39,20 +37,29 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
                 return View(createUserVM);
             }
 
-            AppUser user = Mapper.Map<CreateUserVM, AppUser>(createUserVM);
-            var result = await _userManager.CreateAsync(user, createUserVM.Password);
+            try
+            {
+                AppUser user = Mapper.Map<CreateUserVM, AppUser>(createUserVM);
+                var result = await _userManager.CreateAsync(user, createUserVM.Password);
 
-            if (!result.Succeeded)
+                if (!result.Succeeded)
+                {
+                    TempData["status"] = "alert-danger";
+                    TempData["message"] = string.Format("Não foi possível criar o usuário - erro no acesso ao banco de dados.");
+                    return View(createUserVM);
+                }
+
+                TempData["status"] = "alert-success";
+                TempData["message"] = string.Format("Usuário criado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
+            }
+            catch (Exception)
             {
                 TempData["status"] = "alert-danger";
                 TempData["message"] = string.Format("Não foi possível criar o usuário - erro no acesso ao banco de dados.");
                 return View(createUserVM);
             }
 
-            TempData["status"] = "alert-success";
-            TempData["message"] = string.Format("Usuário criado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
-
-            string redirectionTarget = Request.Form["save-and-back"] != null ? "Users" : "Create";
+            string redirectionTarget = Request.Form["save-and-back"] != null ? "Index" : "Create";
             return RedirectToAction(redirectionTarget);
         }
 
@@ -60,7 +67,7 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Users");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             AppUser user = await _userManager.FindByIdAsync(id ?? default(int));
@@ -83,46 +90,64 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
                 return View(editUserVM);
             }
 
-            AppUser user = await _userManager.FindByIdAsync(Int32.Parse(editUserVM.Id));
-            Mapper.Map(editUserVM, user);
+            try
+            {
+                AppUser user = await _userManager.FindByIdAsync(Int32.Parse(editUserVM.Id));
+                Mapper.Map(editUserVM, user);
 
-            var result = await _userManager.UpdateAsync(user);
+                var result = await _userManager.UpdateAsync(user);
 
-            if (!result.Succeeded)
+                if (!result.Succeeded)
+                {
+                    TempData["status"] = "alert-danger";
+                    TempData["message"] = string.Format("Não foi possível modificar o usuário - erro no acesso ao banco de dados.");
+                    return View(editUserVM);
+                }
+
+                TempData["status"] = "alert-success";
+                TempData["message"] = string.Format("Usuário alterado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
+            }
+            catch (Exception)
             {
                 TempData["status"] = "alert-danger";
-                TempData["message"] = string.Format("Não foi possível modificar o usuário - erro no acesso ao banco de dados.");
+                TempData["message"] = string.Format("Não foi possível criar o usuário - erro no acesso ao banco de dados.");
                 return View(editUserVM);
             }
 
-            TempData["status"] = "alert-success";
-            TempData["message"] = string.Format("Usuário alterado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
-
-            return RedirectToAction("Users");
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
-                return RedirectToAction("Users");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var result = await _userManager.DeleteAsync((int) id);
+            try
+            {
+                var result = await _userManager.DeleteAsync((int)id);
 
-            if (!result.Succeeded)
+                if (!result.Succeeded)
+                {
+                    TempData["status"] = "alert-danger";
+                    TempData["message"] = string.Format("Não foi possível excluir o usuário - erro no acesso ao banco de dados.");
+                }
+                else
+                {
+                    TempData["status"] = "alert-success";
+                    TempData["message"] = string.Format("Usuário excluído com sucesso.");
+                }
+            }
+            catch (Exception)
             {
                 TempData["status"] = "alert-danger";
-                TempData["message"] = string.Format("Não foi possível excluir o usuário - erro no acesso ao banco de dados.");
-            }
-            else
-            {
-                TempData["status"] = "alert-success";
-                TempData["message"] = string.Format("Usuário excluído com sucesso.");
+                TempData["message"] = string.Format("Não foi possível criar o usuário - erro no acesso ao banco de dados.");
             }
 
-            return RedirectToAction("Users");
+            return RedirectToAction("Index");
         }
 
         /// <summary>

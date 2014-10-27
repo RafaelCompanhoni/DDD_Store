@@ -218,8 +218,8 @@
     </Compile>
     <Compile Include="Infrastructure\Attributes\RemoteClientServerAttribute.cs" />
     <Compile Include="Infrastructure\Mappers\AutoMapperConfig.cs" />
-    <Compile Include="Infrastructure\Mappers\DomainToViewModelMappingProfile.cs" />
-    <Compile Include="Infrastructure\Mappers\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Infrastructure\Mappers\Users\UsersDomainToViewModelMappingProfile.cs" />
+    <Compile Include="Infrastructure\Mappers\Users\UsersViewModelToDomainMappingProfile.cs" />
     <Compile Include="Infrastructure\Utils\InputFormatting.cs" />
     <Compile Include="Infrastructure\Validators\CpfAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -232,7 +232,7 @@
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Nav\Menu.cshtml" />
     <Content Include="Areas\Admin\Views\Nav\TopMenu.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
     <Content Include="Areas\Storefront\Views\Home\Index.cshtml" />
     <Content Include="Content\fonts\font-awesome\fontawesome-webfont.eot" />

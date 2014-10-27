@@ -3,9 +3,9 @@ using AutoMapper;
 using LuaBijoux.Core.DomainModels.Identity;
 using LuaBijoux.Web.Areas.Admin.Models;
 
-namespace LuaBijoux.Web.Infrastructure.Mappers
+namespace LuaBijoux.Web.Infrastructure.Mappers.Users
 {
-    public class ViewModelToDomainMappingProfile : Profile
+    public class UsersViewModelToDomainMappingProfile : Profile
     {
         public override string ProfileName
         {

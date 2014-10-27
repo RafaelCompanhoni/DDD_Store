@@ -34,7 +34,7 @@
             {
                 <tr>
                     <td>@user.Id</td>
-                    <td>@user.UserName</td>
+                    <td>@user.FirstName @user.LastName</td>
                     <td>@user.Email</td>
                     <td>
                         @Html.ActionLink("Editar", "Edit", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })

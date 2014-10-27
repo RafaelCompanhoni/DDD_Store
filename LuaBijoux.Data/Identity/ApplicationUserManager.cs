@@ -62,14 +62,6 @@ namespace LuaBijoux.Data.Identity
             return users.FirstOrDefault(u => u.Cpf == cpf).ToAppUser();
         }
 
-        public async Task<ApplicationIdentityResult> CreateAsync(AppUser user)
-        {
-            var applicationUser = user.ToApplicationUser();
-            var identityResult = await _userManager.CreateAsync(applicationUser).ConfigureAwait(false);
-            user.CopyApplicationIdentityUserProperties(applicationUser);
-            return identityResult.ToApplicationIdentityResult();
-        }
-
         public async Task<ApplicationIdentityResult> CreateAsync(AppUser user, string password)
         {
             var applicationUser = user.ToApplicationUser();
@@ -96,8 +88,6 @@ namespace LuaBijoux.Data.Identity
             var identityResult = await _userManager.DeleteAsync(applicationUser).ConfigureAwait(false);
             return identityResult.ToApplicationIdentityResult();
         }
-
-
 
         public void Dispose()
         {

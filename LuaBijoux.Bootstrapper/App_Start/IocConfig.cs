@@ -11,6 +11,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using LuaBijoux.Web.Areas.Admin.Controllers;
 
+//Especifica-se que o método RegisterDependencies de IocConfig será chamado no ínicio do pipeline de inicialização da aplicação (antes de Application_Start de Global.asax)
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IocConfig), "RegisterDependencies")]
 
 namespace LuaBijoux.Bootstrapper

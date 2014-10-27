@@ -2,9 +2,9 @@
 using LuaBijoux.Core.DomainModels.Identity;
 using LuaBijoux.Web.Areas.Admin.Models;
 
-namespace LuaBijoux.Web.Infrastructure.Mappers
+namespace LuaBijoux.Web.Infrastructure.Mappers.Users
 {
-    public class DomainToViewModelMappingProfile : Profile
+    public class UsersDomainToViewModelMappingProfile : Profile
     {
         public override string ProfileName
         {

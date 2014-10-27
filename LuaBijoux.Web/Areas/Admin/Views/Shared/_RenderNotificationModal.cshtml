@@ -15,6 +15,7 @@
             <div class="modal-footer">
                 @using (Html.BeginForm("", "", "", FormMethod.Post, new { @id = "delete-form" }))
                 {
+                    @Html.AntiForgeryToken()
                     @Html.Hidden("id", "", new { @id = "object-id" })
 
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

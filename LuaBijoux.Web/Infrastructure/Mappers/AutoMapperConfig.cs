@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LuaBijoux.Web.Infrastructure.Mappers.Users;
 
 namespace LuaBijoux.Web.Infrastructure.Mappers
 {
@@ -8,8 +9,8 @@ namespace LuaBijoux.Web.Infrastructure.Mappers
         {
             Mapper.Initialize(x =>
             {
-                x.AddProfile<DomainToViewModelMappingProfile>();
-                x.AddProfile<ViewModelToDomainMappingProfile>();
+                x.AddProfile<UsersDomainToViewModelMappingProfile>();
+                x.AddProfile<UsersViewModelToDomainMappingProfile>();
             });
         }
     }

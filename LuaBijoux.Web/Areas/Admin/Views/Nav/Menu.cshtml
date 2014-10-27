@@ -9,13 +9,13 @@
         <div id="users-nav-options" class="nav-config-options panel-collapse @(ViewBag.SelectedCategory == "users" ? "collapse in" : "collapse")">
             <ul class="list-unstyled">
                 <li class="@(ViewBag.SelectedSubcategory == "users" ? "active-option" : null)">
-                    @Html.RouteLink("Gerenciar Usuários", new { controller = "Users", action = "Users", category = "users", subcategory = "users" })
+                    @Html.RouteLink("Gerenciar Usuários", new { controller = "Users", action = "Index", category = "users", subcategory = "users" })
                 </li>
                 <li class="@(ViewBag.SelectedSubcategory == "users-groups" ? "active-option" : null)">
-                    @Html.RouteLink("Grupos de Usuários", new { controller = "Users", action = "Users", category = "users", subcategory = "users-groups" })
+                    @Html.RouteLink("Grupos de Usuários", new { controller = "Users", action = "Index", category = "users", subcategory = "users-groups" })
                 </li>
                 <li class="@(ViewBag.SelectedSubcategory == "online-users" ? "active-option" : null)">
-                    @Html.RouteLink("Usuários Online", new { controller = "Users", action = "Users", category = "users", subcategory = "online-users" })
+                    @Html.RouteLink("Usuários Online", new { controller = "Users", action = "Index", category = "users", subcategory = "online-users" })
                 </li>
             </ul>
         </div>
@@ -27,22 +27,22 @@
         <div id="catalog-nav-options" class="nav-config-options panel-collapse @(ViewBag.SelectedCategory == "catalog" ? "collapse in" : "collapse")">
             <ul class="list-unstyled">
                 <li class="@(ViewBag.SelectedSubcategory == "manage-products" ? "active-option" : null)">
-                    @Html.RouteLink("Gerenciar Produtos", new { controller = "Users", action = "Users", category = "catalog", subcategory = "manage-products" })
+                    @Html.RouteLink("Gerenciar Produtos", new { controller = "Users", action = "Index", category = "catalog", subcategory = "manage-products" })
                 </li>
                 <li class="@(ViewBag.SelectedSubcategory == "manage-categories" ? "active-option" : null)">
-                    @Html.RouteLink("Gerenciar Categorias", new { controller = "Users", action = "Users", category = "catalog", subcategory = "manage-categories" })
+                    @Html.RouteLink("Gerenciar Categorias", new { controller = "Users", action = "Index", category = "catalog", subcategory = "manage-categories" })
                 </li>
                 <li class="@(ViewBag.SelectedSubcategory == "attributes" ? "active-option" : null)">
-                    @Html.RouteLink("Atributos", new { controller = "Users", action = "Users", category = "catalog", subcategory = "attributes" })
+                    @Html.RouteLink("Atributos", new { controller = "Users", action = "Index", category = "catalog", subcategory = "attributes" })
                 </li>
                 <li class="@(ViewBag.SelectedSubcategory == "search-terms" ? "active-option" : null)">
-                    @Html.RouteLink("Termos de Busca", new { controller = "Users", action = "Users", category = "catalog", subcategory = "search-terms" })
+                    @Html.RouteLink("Termos de Busca", new { controller = "Users", action = "Index", category = "catalog", subcategory = "search-terms" })
                 </li>
                 <li class="@(ViewBag.SelectedSubcategory == "tags" ? "active-option" : null)">
-                    @Html.RouteLink("Tags", new { controller = "Users", action = "Users", category = "catalog", subcategory = "tags" })
+                    @Html.RouteLink("Tags", new { controller = "Users", action = "Index", category = "catalog", subcategory = "tags" })
                 </li>
                 <li class="@(ViewBag.SelectedSubcategory == "google-sitemap" ? "active-option" : null)">
-                    @Html.RouteLink("Google Sitemap", new { controller = "Users", action = "Users", category = "catalog", subcategory = "google-sitemap" })
+                    @Html.RouteLink("Google Sitemap", new { controller = "Users", action = "Index", category = "catalog", subcategory = "google-sitemap" })
                 </li>
             </ul>
         </div>
