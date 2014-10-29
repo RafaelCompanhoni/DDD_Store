@@ -170,13 +170,15 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
         /// <returns></returns>
         public JsonResult ValidateCpf(string cpf, string Id)
         {
+            cpf = cpf.Trim();
+            cpf = cpf.Replace(".", "").Replace("-", "").Replace("_", "");
+
             if (!IsCpfWellFormed(cpf))
             {
                 return Json("O CPF informado é inválido", JsonRequestBehavior.AllowGet);
             }
 
-            string parsedCpf = cpf.Replace(".", "").Replace("-", "");
-            AppUser user = _userManager.FindByCpf(parsedCpf);
+            AppUser user = _userManager.FindByCpf(cpf);
             return (user != null && Id != user.Id.ToString()) ? Json("O CPF informado já foi registrado.", JsonRequestBehavior.AllowGet) : Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -193,9 +195,6 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             string digito;
             int soma;
             int resto;
-
-            cpf = cpf.Trim();
-            cpf = cpf.Replace(".", "").Replace("-", "");
 
             if (cpf.Length != 11)
                 return false;
