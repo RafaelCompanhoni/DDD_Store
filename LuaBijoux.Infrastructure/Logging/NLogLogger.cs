@@ -1,33 +1,42 @@
 ﻿using System;
 using LuaBijoux.Core.Logging;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 
 namespace LuaBijoux.Infrastructure.Logging
 {
     public class NLogLogger : ILogger
     {
-        private static readonly Lazy<NLogLogger> LazyLogger = new Lazy<NLogLogger>(() => new NLogLogger());
-        private static readonly Lazy<NLog.Logger> LazyNLogger = new Lazy<NLog.Logger>(NLog.LogManager.GetCurrentClassLogger);
+        public static Logger Instance { get; private set; }
 
-        public static ILogger Instance
+        public NLogLogger()
         {
-            get
-            {
-                return LazyLogger.Value;
-            }
-        }
+            #if DEBUG
+                // Setup the logging view for Sentinel - http://sentinel.codeplex.com
+                var sentinalTarget = new NLogViewerTarget()
+                {
+                    Name = "sentinel",
+                    Address = "udp://127.0.0.1:9999",
+                    IncludeNLogData = false
+                };
+                var sentinalRule = new LoggingRule("*", LogLevel.Trace, sentinalTarget);
+                LogManager.Configuration.AddTarget("sentinel", sentinalTarget);
+                LogManager.Configuration.LoggingRules.Add(sentinalRule);
+            #endif
 
-        private NLogLogger()
-        {
+            LogManager.ReconfigExistingLoggers();
+            Instance = LogManager.GetCurrentClassLogger();
         }
 
         public void Log(string message)
         {
-            LazyNLogger.Value.Info(message);
+            Instance.Info(message);
         }
 
         public void Log(Exception ex)
         {
-            LazyNLogger.Value.Error(ex);
+            Instance.Error(ex);
         }
     }
 }

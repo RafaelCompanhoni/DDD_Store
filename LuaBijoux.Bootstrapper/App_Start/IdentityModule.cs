@@ -5,7 +5,6 @@ using LuaBijoux.Data;
 using LuaBijoux.Data.Identity;
 using LuaBijoux.Data.Identity.Models;
 using Autofac;
-using Autofac.Integration.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 

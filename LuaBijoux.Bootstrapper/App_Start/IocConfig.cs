@@ -35,7 +35,7 @@ namespace LuaBijoux.Bootstrapper
                 return context;
             });
 
-            builder.Register(b => NLogLogger.Instance).SingleInstance();
+            builder.RegisterType(typeof(NLogLogger)).As<ILogger>().SingleInstance();
             builder.RegisterModule(new IdentityModule());
 
             // Controllers - necessário para implementação via reflexão em RemoteClientServerAttribute

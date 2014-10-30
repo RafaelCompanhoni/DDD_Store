@@ -5,6 +5,7 @@ using AutoMapper;
 using System.Threading.Tasks;
 using LuaBijoux.Core.Identity;
 using LuaBijoux.Core.DomainModels.Identity;
+using LuaBijoux.Core.Logging;
 using LuaBijoux.Web.Areas.Admin.Models;
 
 namespace LuaBijoux.Web.Areas.Admin.Controllers
@@ -12,10 +13,12 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private readonly IApplicationUserManager _userManager;
+        private readonly ILogger _logger;
 
-        public UsersController(IApplicationUserManager userManager) 
+        public UsersController(IApplicationUserManager userManager, ILogger logger) 
         {
             _userManager = userManager;
+            _logger = logger;
         }
 
         public async Task<ActionResult> Index()
@@ -37,27 +40,20 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
                 return View(createUserVM);
             }
 
-            try
-            {
-                AppUser user = Mapper.Map<CreateUserVM, AppUser>(createUserVM);
-                var result = await _userManager.CreateAsync(user, createUserVM.Password);
+            // _logger.Log("We're going to throw an exception now."); -- Registrar log do tipo INFO aqui
 
-                if (!result.Succeeded)
-                {
-                    TempData["status"] = "alert-danger";
-                    TempData["message"] = string.Format("Não foi possível criar o usuário - erro no acesso ao banco de dados.");
-                    return View(createUserVM);
-                }
+            AppUser user = Mapper.Map<CreateUserVM, AppUser>(createUserVM);
+            var result = await _userManager.CreateAsync(user, createUserVM.Password);
 
-                TempData["status"] = "alert-success";
-                TempData["message"] = string.Format("Usuário criado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
-            }
-            catch (Exception)
+            if (!result.Succeeded)
             {
                 TempData["status"] = "alert-danger";
                 TempData["message"] = string.Format("Não foi possível criar o usuário - erro no acesso ao banco de dados.");
                 return View(createUserVM);
             }
+
+            TempData["status"] = "alert-success";
+            TempData["message"] = string.Format("Usuário criado com sucesso. E-mail: <strong>{0}</strong>", user.Email);
 
             string redirectionTarget = Request.Form["save-and-back"] != null ? "Index" : "Create";
             return RedirectToAction(redirectionTarget);
