@@ -192,6 +192,8 @@
     <Content Include="Areas\Storefront\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_RenderNotificationModal.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\Errors\Error.cshtml" />
     <None Include="Content\js\_references.js" />
     <Content Include="Global.asax" />
@@ -200,6 +202,7 @@
     <None Include="Content\js\admin\frameworks\jquery\jquery.validate-vsdoc.js" />
     <Content Include="Content\js\admin\frameworks\jquery\jquery.validate.min.js" />
     <Content Include="Content\js\admin\frameworks\jquery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\js\admin\frameworks\jquery\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -211,8 +214,8 @@
     <Compile Include="Areas\Admin\Controllers\ErrorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NavController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Admin\Models\EditUserVM.cs" />
-    <Compile Include="Areas\Admin\Models\CreateUserVM.cs" />
+    <Compile Include="Areas\Admin\Models\Users\EditUserVM.cs" />
+    <Compile Include="Areas\Admin\Models\Users\CreateUserVM.cs" />
     <Compile Include="Areas\Storefront\Controllers\HomeController.cs" />
     <Compile Include="Areas\Storefront\StorefrontAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
@@ -224,13 +227,14 @@
     <Compile Include="Infrastructure\Mappers\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mappers\Users\UsersDomainToViewModelMappingProfile.cs" />
     <Compile Include="Infrastructure\Mappers\Users\UsersViewModelToDomainMappingProfile.cs" />
-    <Compile Include="Infrastructure\Utils\InputFormatting.cs" />
     <Compile Include="Infrastructure\Validators\CpfAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Storefront\Views\web.config" />
     <Content Include="config.rb" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />

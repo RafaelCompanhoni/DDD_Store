@@ -9,6 +9,7 @@ namespace LuaBijoux.Core.Identity
     public interface IApplicationUserManager : IDisposable
     {
         Task<IEnumerable<AppUser>> GetUsersAsync();
+        IEnumerable<AppUser> GetUsers();
         Task<ApplicationIdentityResult> CreateAsync(AppUser user, string password);
         Task<AppUser> FindByIdAsync(int userId);
         Task<AppUser> FindByEmailAsync(string email);

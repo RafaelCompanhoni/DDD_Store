@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 using LuaBijoux.Web.Infrastructure.Attributes;
-using LuaBijoux.Web.Infrastructure.Validators;
 
-namespace LuaBijoux.Web.Areas.Admin.Models
+namespace LuaBijoux.Web.Areas.Admin.Models.Users
 {
     public class CreateUserVM
     {

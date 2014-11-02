@@ -1,0 +1,15 @@
+﻿@using LuaBijoux.Core.DomainModels.Identity;
+@model IEnumerable<AppUser>
+
+@foreach (var user in Model)
+{
+    <tr>
+        <td>@user.Id</td>
+        <td>@user.FirstName @user.LastName</td>
+        <td>@user.Email</td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
+            <a class="btn btn-danger btn-xs" onclick="ShowDeleteModalConfirmation('@user.Id', 'Você tem certeza que deseja excluir @user.Email ?')">Deletar</a>
+        </td>
+    </tr>
+}

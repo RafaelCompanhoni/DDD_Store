@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using LuaBijoux.Core.DomainModels.Identity;
 using LuaBijoux.Data.Extensions;
@@ -24,7 +23,13 @@ namespace LuaBijoux.Data.Identity
         {
             var users = await _userManager.Users.ToListAsync().ConfigureAwait(false);
             return users.ToAppUserList();
-        } 
+        }
+
+        public IEnumerable<AppUser> GetUsers()
+        {
+            var users = _userManager.Users.ToList();
+            return users.ToAppUserList();
+        }
 
         public ApplicationUserManager(UserManager<ApplicationIdentityUser, int> userManager, IAuthenticationManager authenticationManager)
         {

@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using LuaBijoux.Core.DomainModels.Identity;
-using LuaBijoux.Web.Areas.Admin.Models;
+using LuaBijoux.Web.Areas.Admin.Models.Users;
 
 namespace LuaBijoux.Web.Infrastructure.Mappers.Users
 {

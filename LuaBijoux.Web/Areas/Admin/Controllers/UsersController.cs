@@ -7,6 +7,7 @@ using LuaBijoux.Core.Identity;
 using LuaBijoux.Core.DomainModels.Identity;
 using LuaBijoux.Core.Logging;
 using LuaBijoux.Web.Areas.Admin.Models;
+using LuaBijoux.Web.Areas.Admin.Models.Users;
 
 namespace LuaBijoux.Web.Areas.Admin.Controllers
 {
@@ -21,9 +22,17 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             _logger = logger;
         }
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await _userManager.GetUsersAsync());
+            ViewBag.SortOrder = "asc";
+            return View();
+        }
+
+        public PartialViewResult Users(string sortBy)
+        {
+            var ordem = ViewBag.SortOrder == "asc" ? "desc" : "asc";
+            var prop = sortBy;
+            return PartialView(_userManager.GetUsers());
         }
 
         public ActionResult Create()

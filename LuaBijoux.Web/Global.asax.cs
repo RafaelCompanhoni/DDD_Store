@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using LuaBijoux.Core.Logging;
 using LuaBijoux.Web.Infrastructure.Mappers;
 using LuaBijoux.Web.Infrastructure.Utils;
 
@@ -18,7 +19,16 @@ namespace LuaBijoux.Web
 
         void Application_Error(Object sender, EventArgs e)
         {
-            // NLog e redirect
+            var exception = Server.GetLastError();
+            if (exception == null)
+                return;
+
+            ILogger logger = (ILogger)DependencyResolver.Current.GetService(typeof(ILogger));
+            logger.Log(exception);
+
+            Server.ClearError();
+
+            Response.Redirect("~/Admin/Errors/Error");
         }
     }
 }
