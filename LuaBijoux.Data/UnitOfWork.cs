@@ -35,7 +35,7 @@ namespace LuaBijoux.Data
             {
                 return (IRepository<TEntity>)_repositories[type];
             }
-            var repositoryType = typeof(EntityRepository<>);
+            var repositoryType = typeof(Repository<>);
             _repositories.Add(type, Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context));
             return (IRepository<TEntity>)_repositories[type];
         }

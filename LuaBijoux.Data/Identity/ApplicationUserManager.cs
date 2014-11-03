@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using LuaBijoux.Core.Data;
+using LuaBijoux.Core.DomainModels;
 using LuaBijoux.Core.DomainModels.Identity;
+using LuaBijoux.Core.Extensions;
 using LuaBijoux.Data.Extensions;
 using LuaBijoux.Data.Identity.Models;
 using Microsoft.AspNet.Identity;
@@ -19,6 +23,12 @@ namespace LuaBijoux.Data.Identity
         private readonly IAuthenticationManager _authenticationManager;
         private bool _disposed;
 
+        public ApplicationUserManager(UserManager<ApplicationIdentityUser, int> userManager, IAuthenticationManager authenticationManager)
+        {
+            _userManager = userManager;
+            _authenticationManager = authenticationManager;
+        }
+
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             var users = await _userManager.Users.ToListAsync().ConfigureAwait(false);
@@ -31,10 +41,19 @@ namespace LuaBijoux.Data.Identity
             return users.ToAppUserList();
         }
 
-        public ApplicationUserManager(UserManager<ApplicationIdentityUser, int> userManager, IAuthenticationManager authenticationManager)
+        public PaginatedList<AppUser> GetUsers(Expression<Func<AppUser, string>> keySelector, OrderBy orderBy = OrderBy.Ascending)
         {
-            _userManager = userManager;
-            _authenticationManager = authenticationManager;
+            return GetUsers(1, 50, keySelector, null, orderBy);
+        }
+
+        public PaginatedList<AppUser> GetUsers(int pageIndex, int pageSize, Expression<Func<AppUser, string>> keySelector, Expression<Func<AppUser, bool>> predicate, OrderBy orderBy = OrderBy.Ascending)
+        {
+            var users = GetUsers().AsQueryable();
+            users = (predicate != null) ? users.Where(predicate) : users;
+            users = (orderBy == OrderBy.Ascending) ? users.OrderBy(keySelector) : users.OrderByDescending(keySelector);
+            var total = users.Count();
+            users.Paginate(pageIndex, pageSize);
+            return new PaginatedList<AppUser>(users, pageIndex, pageSize, total);
         }
 
         public async Task<AppUser> FindByIdAsync(int userId)

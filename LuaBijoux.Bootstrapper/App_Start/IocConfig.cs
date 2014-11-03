@@ -24,7 +24,7 @@ namespace LuaBijoux.Bootstrapper
             
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterModule<AutofacWebTypesModule>();
-            builder.RegisterGeneric(typeof(EntityRepository<>)).As(typeof(IRepository<>));
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>));
             builder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWork));
 

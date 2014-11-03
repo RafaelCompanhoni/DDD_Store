@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="BrockAllen.CookieTempData">
+      <HintPath>..\packages\BrockAllen.CookieTempData.dll.1.3.0\lib\net45\BrockAllen.CookieTempData.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -223,6 +226,7 @@
     </Compile>
     <Compile Include="Infrastructure\Attributes\ErrorAttribute.cs" />
     <Compile Include="Infrastructure\Attributes\RemoteClientServerAttribute.cs" />
+    <Compile Include="Infrastructure\Utils\CookieStore.cs" />
     <Compile Include="Infrastructure\Utils\FilterConfig.cs" />
     <Compile Include="Infrastructure\Mappers\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mappers\Users\UsersDomainToViewModelMappingProfile.cs" />

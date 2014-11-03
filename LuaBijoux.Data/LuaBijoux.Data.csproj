@@ -79,7 +79,7 @@
     <Compile Include="Identity\ApplicationUserManagerOld.cs" />
     <Compile Include="LuaBijouxContext.cs" />
     <Compile Include="EFConfig.cs" />
-    <Compile Include="EntityRepository.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />

@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
 using System.Threading.Tasks;
+using LuaBijoux.Core.Data;
 using LuaBijoux.Core.Identity;
 using LuaBijoux.Core.DomainModels.Identity;
 using LuaBijoux.Core.Logging;
+using LuaBijoux.Core.Services;
 using LuaBijoux.Web.Areas.Admin.Models;
 using LuaBijoux.Web.Areas.Admin.Models.Users;
+using LuaBijoux.Web.Infrastructure.Utils;
 
 namespace LuaBijoux.Web.Areas.Admin.Controllers
 {
@@ -24,15 +28,34 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.SortOrder = "asc";
             return View();
         }
 
         public PartialViewResult Users(string sortBy)
         {
-            var ordem = ViewBag.SortOrder == "asc" ? "desc" : "asc";
-            var prop = sortBy;
-            return PartialView(_userManager.GetUsers());
+            // TODO - armazenar orderBy na ViewBag: ver controller de produtos do projeto OnionIdentity - depois de feito, remover CookieStore da pasta Utils
+            // TODO - Ver boas práticas de como utilizar LINQ expressions e porque ele precisa de Expression<Func<AppUser, int>> e não apenas Expression<Func<AppUser, string>> para funcionar (pode ser erro do projeto OnionIdentity)
+
+            OrderBy orderBy = OrderBy.Ascending;
+
+            if (sortBy != null)
+            {
+                string orderByCookieValue = CookieStore.GetCookie(sortBy);
+
+                if (orderByCookieValue != null)
+                {
+                    OrderBy currentOrderBy = (OrderBy) Enum.Parse(typeof (OrderBy), orderByCookieValue);
+                    CookieStore.SetCookie(sortBy, currentOrderBy == OrderBy.Ascending ? OrderBy.Descending.ToString() : OrderBy.Ascending.ToString());
+                    orderBy = (OrderBy) Enum.Parse(typeof(OrderBy), orderByCookieValue);
+                }
+                else
+                {
+                    CookieStore.SetCookie(sortBy, orderBy.ToString());
+                }
+            }
+
+            Expression<Func<AppUser, string>> exp = x => x.FirstName;
+            return PartialView(_userManager.GetUsers(exp, orderBy));
         }
 
         public ActionResult Create()

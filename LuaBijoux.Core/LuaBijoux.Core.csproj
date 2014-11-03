@@ -64,8 +64,8 @@
     <Compile Include="Identity\SignInStatus.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IService%271.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\IServiceUoW.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,10 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using LuaBijoux.Core.Data;
+using LuaBijoux.Core.DomainModels;
 
 namespace LuaBijoux.Core.Services
 {
-    public interface IService : IDisposable
+    public interface IService<TEntity> : IServiceUoW where TEntity : BaseEntity
     {
-        IUnitOfWork UnitOfWork { get; }
+        List<TEntity> GetAll();
+
+        Task<List<TEntity>> GetAllAsync();
+        PaginatedList<TEntity> GetAll(int pageIndex, int pageSize);
+        Task<PaginatedList<TEntity>> GetAllAsync(int pageIndex, int pageSize);
+        PaginatedList<TEntity> GetAll(int pageIndex, int pageSize, Expression<Func<TEntity, int>> keySelector, OrderBy orderBy = OrderBy.Ascending);
+        Task<PaginatedList<TEntity>> GetAllAsync(int pageIndex, int pageSize, Expression<Func<TEntity, int>> keySelector, OrderBy orderBy = OrderBy.Ascending);
+        PaginatedList<TEntity> GetAll(int pageIndex, int pageSize, Expression<Func<TEntity, int>> keySelector, Expression<Func<TEntity, bool>> predicate, OrderBy orderBy, params Expression<Func<TEntity, object>>[] includeProperties);
+        Task<PaginatedList<TEntity>> GetAllAsync(int pageIndex, int pageSize, Expression<Func<TEntity, int>> keySelector, Expression<Func<TEntity, bool>> predicate, OrderBy orderBy, params Expression<Func<TEntity, object>>[] includeProperties);
+        TEntity GetById(int id);
+        Task<TEntity> GetByIdAsync(int id);
+        void Add(TEntity entity);
+        Task AddAsync(TEntity entity);
+        void Update(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        void Delete(TEntity entity);
+        Task DeleteAsync(TEntity entity);
     }
 }
