@@ -31,31 +31,34 @@ namespace LuaBijoux.Web.Areas.Admin.Controllers
             return View();
         }
 
-        public PartialViewResult Users(string sortBy)
+        public PartialViewResult Users(string sortOrder)
         {
-            // TODO - armazenar orderBy na ViewBag: ver controller de produtos do projeto OnionIdentity - depois de feito, remover CookieStore da pasta Utils
-            // TODO - Ver boas práticas de como utilizar LINQ expressions e porque ele precisa de Expression<Func<AppUser, int>> e não apenas Expression<Func<AppUser, string>> para funcionar (pode ser erro do projeto OnionIdentity)
+            // TODO - TempData está com um funcionamento errático
+            // Remover a implementação customizado de cookies
 
+            Expression<Func<AppUser, string>> keySelector = x => x.FirstName;
             OrderBy orderBy = OrderBy.Ascending;
 
-            if (sortBy != null)
+            switch (sortOrder)
             {
-                string orderByCookieValue = CookieStore.GetCookie(sortBy);
-
-                if (orderByCookieValue != null)
-                {
-                    OrderBy currentOrderBy = (OrderBy) Enum.Parse(typeof (OrderBy), orderByCookieValue);
-                    CookieStore.SetCookie(sortBy, currentOrderBy == OrderBy.Ascending ? OrderBy.Descending.ToString() : OrderBy.Ascending.ToString());
-                    orderBy = (OrderBy) Enum.Parse(typeof(OrderBy), orderByCookieValue);
-                }
-                else
-                {
-                    CookieStore.SetCookie(sortBy, orderBy.ToString());
-                }
+                case "name_asc":
+                    keySelector = x => x.FirstName;
+                    orderBy = OrderBy.Ascending;
+                    TempData["NameSortOrder"] = "name_desc";
+                    break;
+                case "name_desc":
+                    keySelector = x => x.FirstName;
+                    orderBy = OrderBy.Descending;
+                    TempData["NameSortOrder"] = "name_asc";
+                    break;
+                default:
+                    keySelector = x => x.FirstName;
+                    orderBy = OrderBy.Ascending;
+                    TempData["NameSortOrder"] = "name_desc";
+                    break;
             }
 
-            Expression<Func<AppUser, string>> exp = x => x.FirstName;
-            return PartialView(_userManager.GetUsers(exp, orderBy));
+            return PartialView(_userManager.GetUsers(keySelector, orderBy));
         }
 
         public ActionResult Create()

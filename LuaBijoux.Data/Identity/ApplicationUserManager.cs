@@ -43,7 +43,12 @@ namespace LuaBijoux.Data.Identity
 
         public PaginatedList<AppUser> GetUsers(Expression<Func<AppUser, string>> keySelector, OrderBy orderBy = OrderBy.Ascending)
         {
-            return GetUsers(1, 50, keySelector, null, orderBy);
+            // TODO - ao obter users com ToAppUserList ocorre uma chamada ao banco (retorna IEnumerable). O ideal é retornar um IQueryable(AppUser) e apenas
+            // depois de feita a ordenação, retornar a lista (onde ocorrerá então a execução da query)
+
+            var users = _userManager.Users.ToAppUserList().AsQueryable();
+            users = (orderBy == OrderBy.Ascending) ? users.OrderBy(keySelector) : users.OrderByDescending(keySelector);
+            return new PaginatedList<AppUser>(users, 0, 50, users.Count());
         }
 
         public PaginatedList<AppUser> GetUsers(int pageIndex, int pageSize, Expression<Func<AppUser, string>> keySelector, Expression<Func<AppUser, bool>> predicate, OrderBy orderBy = OrderBy.Ascending)
